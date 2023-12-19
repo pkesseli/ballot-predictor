@@ -57,6 +57,7 @@ class Chronology:
             Bill: _description_
         """
         response: requests.Response = requests.get(billDetailsUrl)
+        response.encoding = response.apparent_encoding
         content: html.HtmlElement = html.fromstring(response.text)
 
         return Bill(Chronology.__extract_title(content), Chronology.__extract_wording(billDetailsUrl), Chronology.__extract_date(content))
