@@ -7,7 +7,7 @@ from typing import List
 from lxml import html
 
 
-class TestStringMethods(unittest.TestCase):
+class TestChronology(unittest.TestCase):
 
     def test_get_bills(self):
         chronology = Chronology(POPULAR_INITIATIVES_CHRONOLOGY)
