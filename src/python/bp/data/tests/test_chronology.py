@@ -1,4 +1,5 @@
-from bp.data.chronology import Chronology, POPULAR_INITIATIVES_CHRONOLOGY
+from bp.data.chronology import Chronology
+from bp.entity.ballot import DoubleMajorityBallot
 from bp.entity.bill import Bill
 
 import unittest
@@ -10,8 +11,7 @@ from lxml import html
 class TestChronology(unittest.TestCase):
 
     def test_get_bills(self):
-        chronology = Chronology(POPULAR_INITIATIVES_CHRONOLOGY)
-        ballots: List[str] = chronology.get_bills()
+        ballots: List[str] = Chronology.get_initiatives()
         for ballot in ballots:
             self.assertRegex(
                 ballot, "https://www.bk.admin.ch/ch/d/pore/vi/vis\d+.html")
@@ -26,8 +26,9 @@ class TestChronology(unittest.TestCase):
             Chronology._Chronology__extract_title(page)
 
     def test_get_bill_modern_accepted(self):
-        bill: Bill = Chronology.get_bill(
+        ballot: DoubleMajorityBallot = Chronology.get_initiative(
             "https://www.bk.admin.ch/ch/d/pore/vi/vis484.html")
+        bill: Bill = ballot.bill
         self.assertEqual(
             "Ja zum Schutz der Kinder und Jugendlichen vor Tabakwerbung (Kinder und Jugendliche ohne Tabakwerbung)", bill.title)
         self.assertEqual("""Die Bundesverfassung^1 wird wie folgt geändert:
@@ -54,8 +55,9 @@ Die Bundesversammlung verabschiedet die gesetzlichen Ausführungsbestimmungen in
         self.assertEqual(datetime(2018, 3, 20, 0, 0, 0, 0), bill.date)
 
     def test_get_bill_historic_accepted(self):
-        bill: Bill = Chronology.get_bill(
+        ballot: DoubleMajorityBallot = Chronology.get_initiative(
             "https://www.bk.admin.ch/ch/d/pore/vi/vis1.html")
+        bill: Bill = ballot.bill
         self.assertEqual(
             "für ein Verbot des Schlachtens ohne vorherige Betäubung", bill.title)
         self.assertEqual("""Die Volksinitiative lautet:

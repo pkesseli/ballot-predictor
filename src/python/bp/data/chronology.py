@@ -1,6 +1,8 @@
 
 from bp.data.scraper import Scraper
+from bp.entity.ballot import DoubleMajorityBallot
 from bp.entity.bill import Bill
+from bp.entity.result import DoubleMajorityBallotResult
 
 import re
 import requests
@@ -25,29 +27,35 @@ class Chronology:
     Downloads bill information from chronology websites.
     """
 
-    def __init__(self, url: str):
-        """Creates an information downloader for the given chronolgy page.
-
-        Args:
-            url (str): URL of bill chronology website.
-        """
-        self.url = url
-
-    def get_bills(self) -> List[str]:
-        """Retrieve details page URL for each bill on self.url.
+    @staticmethod
+    def get_initiatives() -> List[str]:
+        """Retrieve details page URL for each bill on
+        POPULAR_INITIATIVES_CHRONOLOGY.
 
         Returns:
             List[str]: Details page URLs for all bills, ordered newest to
             oldest.
         """
-        parent_path: str = Scraper.get_parent(self.url)
-        response: requests.Response = requests.get(self.url)
-        content: html.HtmlElement = html.fromstring(response.text)
-        table_rows: List[html.HtmlElement] = content.xpath("//td/a")
-        return [parent_path + "/" + element.get("href") for element in table_rows]
+        return Chronology.__get_bills__(POPULAR_INITIATIVES_CHRONOLOGY)
 
     @staticmethod
-    def get_bill(billDetailsUrl: str) -> Bill:
+    def get_initiative(billDetailsUrl: str) -> DoubleMajorityBallot:
+        """Retrieve popular initiative details information. Includes bill
+        details as well as optional ballot results.
+
+        Args:
+            billDetailsUrl (str): Bill details page from which to extract data.
+
+        Returns:
+            DoubleMajorityBallot: Bill information with optional result.
+        """
+        bill: Bill = Chronology.__get_bill__(billDetailsUrl)
+        result: DoubleMajorityBallotResult = DoubleMajorityBallotResult(
+            65.33, 11.5)
+        return DoubleMajorityBallot(bill, result)
+
+    @staticmethod
+    def __get_bill__(billDetailsUrl: str) -> Bill:
         """Retrieve bill details information.
 
         Args:
@@ -61,6 +69,20 @@ class Chronology:
         content: html.HtmlElement = html.fromstring(response.text)
 
         return Bill(Chronology.__extract_title(content), Chronology.__extract_wording(billDetailsUrl), Chronology.__extract_date(content))
+
+    @staticmethod
+    def __get_bills__(url: str) -> List[str]:
+        """Retrieve details page URL for each bill on url.
+
+        Returns:
+            List[str]: Details page URLs for all bills, ordered newest to
+            oldest.
+        """
+        parent_path: str = Scraper.get_parent(url)
+        response: requests.Response = requests.get(url)
+        content: html.HtmlElement = html.fromstring(response.text)
+        table_rows: List[html.HtmlElement] = content.xpath("//td/a")
+        return [parent_path + "/" + element.get("href") for element in table_rows]
 
     @staticmethod
     def __extract_title(billDetailsPageContent: html.HtmlElement) -> str:
