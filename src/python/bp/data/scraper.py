@@ -3,6 +3,10 @@ from typing import List
 from urllib.parse import urlparse, ParseResult
 
 
+SUPERSCRIPT_MARKER: str = "^"
+"""str: Superscript prefix used in HTML to plain text conversions."""
+
+
 class Scraper:
     """Helper for common HTML scraping tasks.
     Contains URL manipulation and HTML processing helpers.
@@ -41,7 +45,7 @@ class Scraper:
         text: str = ""
         suffix: str = ""
         if element.tag == "sup":
-            text += "^"
+            text += SUPERSCRIPT_MARKER
         elif element.tag == "br":
             text += "\n"
         elif element.tag == "p":
@@ -50,6 +54,11 @@ class Scraper:
         if element.text:
             text += element.text
         text += Scraper.convert_to_text([child for child in element])
+
         if element.tail:
             text += element.tail
-        return text + suffix
+
+        if text == SUPERSCRIPT_MARKER:
+            return ""
+
+        return "" if text == "" else text + suffix

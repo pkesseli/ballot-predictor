@@ -25,7 +25,7 @@ class TestChronology(unittest.TestCase):
         with self.assertRaises(ValueError):
             Chronology._Chronology__extract_title(page)
 
-    def test_get_bill_accepted(self):
+    def test_get_bill_modern_accepted(self):
         bill: Bill = Chronology.get_bill(
             "https://www.bk.admin.ch/ch/d/pore/vi/vis484.html")
         self.assertEqual(
@@ -49,8 +49,20 @@ Art. 197 Ziff. 12^2
 
 Die Bundesversammlung verabschiedet die gesetzlichen Ausführungsbestimmungen innert drei Jahren seit Annahme von Artikel 118 Absatz 2 Buchstabe b durch Volk und Stände.
 
-
-
 ^1 SR 101
 ^2 Die endgültige Ziffer dieser Übergangsbestimmung wird nach der Volksabstimmung von der Bundeskanzlei festgelegt.""", bill.wording)
         self.assertEqual(datetime(2018, 3, 20, 0, 0, 0, 0), bill.date)
+
+    def test_get_bill_historic_accepted(self):
+        bill: Bill = Chronology.get_bill(
+            "https://www.bk.admin.ch/ch/d/pore/vi/vis1.html")
+        self.assertEqual(
+            "für ein Verbot des Schlachtens ohne vorherige Betäubung", bill.title)
+        self.assertEqual("""Die Volksinitiative lautet:
+
+Die Bundesverfassung wird wie folgt ergänzt:
+
+Art. 25^bis (neu)
+
+Das Schlachten der Tiere ohne vorherige Betäubung vor dem Blutentzuge ist bei jeder Schlachtart und Viehgattung ausnahmslos untersagt.""", bill.wording)
+        self.assertEqual(datetime(1892, 5, 10, 0, 0, 0, 0), bill.date)
