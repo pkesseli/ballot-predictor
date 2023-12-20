@@ -22,5 +22,5 @@ python -m unittest discover -s src/python
 
 To run the python tests with coverage information, use:
 ```bash
-python -m coverage run -m unittest discover -s src/python; python -m coverage report --fail-under 100
+python -m coverage run --source src/python -m unittest discover -s src/python; python -m coverage report --fail-under 100
 ```
