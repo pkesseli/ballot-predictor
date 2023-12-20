@@ -58,7 +58,10 @@ class Scraper:
         if element.tail:
             text += element.tail
 
-        if text == SUPERSCRIPT_MARKER:
+        if text == "" or text == SUPERSCRIPT_MARKER:
             return ""
 
-        return "" if text == "" else text + suffix
+        text += suffix
+        text = text.replace("\xa0", " ")
+        text = text.replace("\u2013", "-")
+        return text
