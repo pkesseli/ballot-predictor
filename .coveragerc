@@ -1,0 +1,4 @@
+[run]
+branch = True
+omit =
+    src/python/bp/data/collector.py

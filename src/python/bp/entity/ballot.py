@@ -14,9 +14,9 @@ class BallotStatus(Enum):
     """No vote was held on the measure yet. This is also used for ballots where
     we would like to generate a prediction.
     """
-    FAILED = 1
+    FAILED = 2
     """The measure failed without a vote."""
-    COMPLETED = 2
+    COMPLETED = 3
     """A vote was held on the measure, implying that a respective result is
     available.
     """
