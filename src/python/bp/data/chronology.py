@@ -1,6 +1,6 @@
 
 from bp.data.scraper import Scraper
-from bp.entity.ballot import DoubleMajorityBallot
+from bp.entity.ballot import BallotStatus, DoubleMajorityBallot
 from bp.entity.bill import Bill
 from bp.entity.result import DoubleMajorityBallotResult
 
@@ -50,9 +50,10 @@ class Chronology:
             DoubleMajorityBallot: Bill information with optional result.
         """
         bill: Bill = Chronology.__get_bill__(billDetailsUrl)
+        status: BallotStatus = BallotStatus.COMPLETED
         result: DoubleMajorityBallotResult = DoubleMajorityBallotResult(
             65.33, 11.5)
-        return DoubleMajorityBallot(bill, result)
+        return DoubleMajorityBallot(bill, status, result)
 
     @staticmethod
     def __get_bill__(billDetailsUrl: str) -> Bill:
