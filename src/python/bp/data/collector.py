@@ -16,14 +16,24 @@ def main():
     jsonpickle.handlers.registry.register(datetime, DatetimeHandler)
     jsonpickle.handlers.registry.register(BallotStatus, BallotStatusHandler)
     jsonpickle.set_encoder_options('json', sort_keys=True, indent=4)
-    initiatives: List[str] = Chronology.get_initiatives()
-    for billDetailsUrl in initiatives:
+    initiativeUrls: List[str] = Chronology.get_initiatives()
+    initiatives: List[DoubleMajorityBallot] = []
+
+    index: int = 1
+    count: int = len(initiativeUrls)
+    for billDetailsUrl in initiativeUrls:
+        print(f"{index}/{count}: {billDetailsUrl}")
+        index += 1
+        if index < 414:
+            continue
+
         ballot: DoubleMajorityBallot = Chronology.get_initiative(
             billDetailsUrl)
-        serialised = jsonpickle.encode(ballot)
-        with open("bp/resources/initiatives.json", "w+") as file:
-            file.write(serialised)
-        break
+        initiatives.append(ballot)
+
+    serialised = jsonpickle.encode(initiatives)
+    with open("bp/resources/initiatives.json", "w+") as file:
+        file.write(serialised)
 
 
 if __name__ == "__main__":
