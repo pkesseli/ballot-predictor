@@ -1,8 +1,9 @@
-from bp.data.serialisation import BallotStatusHandler, DatetimeHandler
+from bp.data.serialisation import BallotStatusHandler, DatetimeHandler, DecimalHandler
 from bp.entity.ballot import BallotStatus
 
 import unittest
 from datetime import datetime
+from decimal import Decimal
 
 
 class TestDatetimeHandler(unittest.TestCase):
@@ -35,3 +36,13 @@ class TestBallotStatusHandler(unittest.TestCase):
         self.assertEqual(BallotStatus.COMPLETED,
                          BallotStatusHandler(None).restore("completed"))
         self.assertIsNone(BallotStatusHandler(None).restore("invalid"))
+
+
+class TestDecimalHandler(unittest.TestCase):
+
+    def test_flatten(self):
+        self.assertEqual("17.1", DecimalHandler(
+            None).flatten(Decimal("17.1"), None))
+
+    def test_restore(self):
+        self.assertEqual(Decimal("4.3"), DecimalHandler(None).restore("4.3"))

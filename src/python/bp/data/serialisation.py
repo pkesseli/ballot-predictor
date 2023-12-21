@@ -1,6 +1,7 @@
 from bp.entity.ballot import BallotStatus
 
 from datetime import datetime
+from decimal import Decimal
 from jsonpickle.handlers import BaseHandler
 
 
@@ -36,3 +37,14 @@ class BallotStatusHandler(BaseHandler):
                 return BallotStatus.FAILED
             case "completed":
                 return BallotStatus.COMPLETED
+
+
+class DecimalHandler(BaseHandler):
+    """jsonpickle handler to serialise decimals in more straightforward format.
+    """
+
+    def flatten(self, obj: Decimal, _) -> str:
+        return str(obj)
+
+    def restore(self, obj: str) -> Decimal:
+        return Decimal(obj)
