@@ -64,9 +64,9 @@ class TestChronology(unittest.TestCase):
             Chronology._Chronology__find_result_table(page, "Für eine Reichtumssteuer")
 
     def test_extract_accepting_cantons_incomplete_info_on_website(self):
-        self.assertEquals(Decimal(0), Chronology._Chronology__extract_accepting_cantons("Bekämpfung des Alkoholismus", None))
-        self.assertEquals(Decimal(8.5), Chronology._Chronology__extract_accepting_cantons("Neuordnung des Alkoholwesens", None))
-        self.assertEquals(Decimal(3), Chronology._Chronology__extract_accepting_cantons("Totalrevision der Bundesverfassung", None))
+        self.assertEqual(Decimal(0), Chronology._Chronology__extract_accepting_cantons("Bekämpfung des Alkoholismus", None))
+        self.assertEqual(Decimal(8.5), Chronology._Chronology__extract_accepting_cantons("Neuordnung des Alkoholwesens", None))
+        self.assertEqual(Decimal(3), Chronology._Chronology__extract_accepting_cantons("Totalrevision der Bundesverfassung", None))
 
     def test_get_initiative_modern_accepted(self):
         ballot: DoubleMajorityBallot = Chronology.get_initiative(
