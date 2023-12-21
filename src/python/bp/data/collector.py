@@ -24,9 +24,6 @@ def main():
     for billDetailsUrl in initiativeUrls:
         print(f"{index}/{count}: {billDetailsUrl}")
         index += 1
-        if index < 414:
-            continue
-
         ballot: DoubleMajorityBallot = Chronology.get_initiative(
             billDetailsUrl)
         initiatives.append(ballot)

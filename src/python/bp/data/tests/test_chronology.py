@@ -47,6 +47,27 @@ class TestChronology(unittest.TestCase):
         page: html.HtmlElement = html.fromstring("<p></p>")
         self.assertIsNone(Chronology._Chronology__find_result_table(page, "unknown bill"))
 
+    def test_find_result_table_inconclusive(self):
+        page: html.HtmlElement = html.fromstring("""
+            <div class='mod-text'>
+                <h3>Volksbegehren 'zur Steuerharmonisierung, zur stärkeren Besteuerung des Reichtums und zur Entlastung der unteren Einkommen (Reichtumsteuer-Initiative)'</h3>
+                <h3>Bundesgesetz vom 17.12.1976 über die politischen Rechte</h3>
+                <h3>Bundesbeschluss vom 05.05.1977 über die Einführung eines zivilen Ersatzdienstes</h3>
+                <h3>Bundesgesetz vom 05.05.1977 über Massnahmen zum Ausgleich des Bundeshaushaltes</h3>
+                <h3>Regierungsunterstützung</h3>
+                <h3>Politische Rechte</h3>
+                <h3>Dokumentation</h3>
+                <h3>Über die Bundeskanzlei</h3>
+            </div>
+            """)
+        with self.assertRaises(ValueError):
+            Chronology._Chronology__find_result_table(page, "Für eine Reichtumssteuer")
+
+    def test_extract_accepting_cantons_incomplete_info_on_website(self):
+        self.assertEquals(Decimal(0), Chronology._Chronology__extract_accepting_cantons("Bekämpfung des Alkoholismus", None))
+        self.assertEquals(Decimal(8.5), Chronology._Chronology__extract_accepting_cantons("Neuordnung des Alkoholwesens", None))
+        self.assertEquals(Decimal(3), Chronology._Chronology__extract_accepting_cantons("Totalrevision der Bundesverfassung", None))
+
     def test_get_initiative_modern_accepted(self):
         ballot: DoubleMajorityBallot = Chronology.get_initiative(
             "https://www.bk.admin.ch/ch/d/pore/vi/vis484.html")
