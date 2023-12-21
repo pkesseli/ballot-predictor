@@ -16,7 +16,7 @@ POPULAR_INITIATIVES_CHRONOLOGY: str = 'https://www.bk.admin.ch/ch/d/pore/vi/vis_
 """str: Popular initiatives chronology website."""
 
 
-PREFIXED_TITLE_PATTERN: re.Pattern = re.compile("^.*'([^']*)'$")
+PREFIXED_TITLE_PATTERN: re.Pattern = re.compile("^.*['«]([^'»]*)['»].*$")
 """
 re.Pattern: Regex pattern extracting bill title from prefixed details page
 title, e.g. extracting "MyTitle" from "My prefix: 'MyTitle'"
@@ -40,7 +40,7 @@ class Chronology:
         return Chronology.__get_bills(POPULAR_INITIATIVES_CHRONOLOGY)
 
     @staticmethod
-    def get_initiative(billDetailsUrl: str) -> DoubleMajorityBallot:
+    def get_initiative(bill_details_url: str) -> DoubleMajorityBallot:
         """Retrieve popular initiative details information. Includes bill
         details as well as optional ballot results.
 
@@ -50,7 +50,7 @@ class Chronology:
         Returns:
             DoubleMajorityBallot: Bill information with optional result.
         """
-        response: requests.Response = requests.get(billDetailsUrl)
+        response: requests.Response = requests.get(bill_details_url)
         response.encoding = response.apparent_encoding
         content: html.HtmlElement = html.fromstring(response.text)
         vote_row: html.HtmlElement = Chronology.__find_row(
@@ -59,7 +59,7 @@ class Chronology:
             vote_row = Chronology.__find_row(
                 content, "Abstimmung über Gegenentwurf")
 
-        bill: Bill = Chronology.__get_bill(billDetailsUrl, content)
+        bill: Bill = Chronology.__get_bill(bill_details_url, content)
         status: BallotStatus = Chronology.__get_status(content, vote_row)
         result: DoubleMajorityBallotResult | None = Chronology.__get_initiative_result(
             bill.title, vote_row)
@@ -89,24 +89,85 @@ class Chronology:
         formatted_date: str = vote_row.xpath("td")[1].text_content().strip()
         date: datetime = Chronology.__parse_timestamp(formatted_date)
         voteResultUrl: str = f"https://www.bk.admin.ch/ch/d/pore/va/{date.year}{date.month:02d}{date.day:02d}/index.html"
-
         response: requests.Response = requests.get(voteResultUrl)
         response.encoding = response.apparent_encoding
         content: html.HtmlElement = html.fromstring(response.text)
-        table: List[html.HtmlElement] = content.xpath(
-            f"//h3[contains(text(), '«{title}»')]/following-sibling::table[1]")
-        if not table:
-            table = content.xpath(
-                f"//h3[contains(text(), \"'{title}'\")]/following-sibling::table[1]")
+
+        initiative_title: html.HtmlElement = Chronology.__find_result_table(
+            content, title)
+        table: List[html.HtmlElement] = initiative_title.xpath(
+            "following-sibling::table[1]")
         rows: List[html.HtmlElement] = table[0].xpath("tbody/tr")
         popular_vote_voting_yes = Decimal(
             rows[0].xpath("td")[3].text_content())
-        formatted_accepting_cantons: str = rows[1].xpath("td")[
-            1].text_content()
-        accepting_cantons: Decimal = Chronology.__parse_canton_count(
-            formatted_accepting_cantons)
+        accepting_cantons: Decimal = Chronology.__extract_accepting_cantons(
+            title, rows)
 
         return DoubleMajorityBallotResult(popular_vote_voting_yes, accepting_cantons)
+
+    @staticmethod
+    def __extract_accepting_cantons(title: str, rows: List[html.HtmlElement]) -> Decimal:
+        """Helper to read the number of accepting cantons from the rows of a
+        ballot result table. title is used to handle a few special cases where
+        some ballot information pages have incomplete information.
+
+        Args:
+            title (str): Title of the bill.
+            rows (List[html.HtmlElement]): Vote result table rows of the bill.
+
+        Returns:
+            Decimal: Number of cantons which accepted the bill.
+        """
+        if "für eine Reform des Steuerwesens (Gerechtere Besteuerung und Abschaffung der Steuerprivilegien)" == title:
+            return Decimal(0.5)
+
+        formatted_accepting_cantons: str = rows[1].xpath("td")[
+            1].text_content()
+        return Chronology.__parse_canton_count(formatted_accepting_cantons)
+
+    @staticmethod
+    def __find_result_table(content: html.HtmlElement, title: str) -> html.HtmlElement:
+        """Vote results are published per voting day, so multiple vote results
+        are on the same page. This method identifies the correct results table
+        for the given bill.
+
+        Args:
+            content (html.HtmlElement): Voting day results page.
+            title (str): Name of the bill to find.
+
+        Returns:
+            html.HtmlElement: Table containing the vote results.
+        """
+        title = title.lower()
+        escaped_title = title.replace("(", "[").replace(")", "]").replace(
+            "ja zur komplementärmedizin", "zukunft mit komplementärmedizin").replace(
+                "für tiefere krankenkassenprämien in der grundversicherung", "für qualität und wirtschaftlichkeit in der krankenversicherung").replace(
+                    "überschüssige goldreserven in den ahv-fonds [goldinitiative]", "ueberschüssige goldreserven in den ahv-fonds (goldinitiative)").replace(
+                        "strom ohne atom - für eine energiewende und die schrittweise stilllegung der atomkraftwerke [strom ohne atom]", " strom ohne atom - für eine energiewende und schrittweise stilllegung der atomkraftwerke (strom ohne atom)").replace(
+                            "moratoriumplus - für die verlängerung des atomkraftwerk-baustopps und die begrenzung des atomrisikos [moratoriumplus]", "moratorium plus - für die verlängerung des atomkraftwerk-baustopps und die begrenzung des atomrisikos (moratoriumplus)").replace(
+                                "für die belohnung des energiesparens und gegen die energieverschwendung [energie-umwelt-initiative]", "verfassungsartikel über eine energielenkungsabgabe für die umwelt").replace(
+                                    "für einen solar-rappen [solar-initiative]", "für einen solarrappen (solar-initiative").replace(
+                                        "zum schutz von leben und umwelt vor genmanipulationen [gen-schutz-initiative]", "zum schutz von leben und umwelt vor genmanipulation (gen-schutz-initiative)").replace(
+                                            "für einen arbeitsfreien bundesfeiertag [\"1. august-initiative\"]", "für einen arbeitsfreien bundesfeiertag (1. august-initiative)").replace(
+                                                "für eine freie aarelandschaft zwischen biel und solothurn/zuchwil", "für eine autobahnfreie aarelandschaft zwischen biel und solothurn/zuchwil").replace(
+                                                    "für die koordination des schuljahrbeginns", "für die koordination des schuljahresbeginns in allen kantonen").replace(
+                                                        "für die fristenlösung [beim schwangerschaftsabbruch]", "für die fristenlösung").replace(
+                                                            "für 12 motorfahrzeugfreie sonntage pro jahr", "für 12 motorfahrzeugfreie und motorflugzeugfreie sonntage pro jahr").replace(
+                                                                "gegen die luftverschmutzung durch motorfahrzeuge [albatrosinitiative]", "gegen die luftverschmutzung durch motorfahrzeuge").replace(
+                                                                    "für die vermehrte mitbestimmung der bundesversammlung und des schweizervolkes im nationalstrassenbau", "demokratie im nationalstrassenbau").replace(
+                                                                        "für eine reichtumssteuer", "zur steuerharmonisierung, zur stärkeren besteuerung des reichtums und zur entlastung der unteren einkommen (reichtumsteuer-initiative)").replace(
+                                                                            "für eine reform des steuerwesens [gerechtere besteuerung und abschaffung der steuerprivilegien]", "gerechtere besteuerung und die abschaffung der steuerprivilegien").replace(
+                                                                                "für eine beschränkung der einbürgerungen", "zur beschränkung der einbürgerungen").replace(
+                                                                                    "ja zu europa!", "ja zu europa").strip()
+
+        initiative_titles: List[html.HtmlElement] = content.xpath("//h3")
+        for initiative_title in initiative_titles:
+            actual_title: str = Scraper.convert_to_text(initiative_title)
+            actual_title = actual_title.replace("\r\n", " ")
+            actual_title = actual_title.replace("\n", " ")
+            actual_title = actual_title.lower()
+            if title in actual_title or escaped_title in actual_title:
+                return initiative_title
 
     @staticmethod
     def __get_status(content: html.HtmlElement, vote_row: html.HtmlElement | None) -> BallotStatus:
@@ -163,7 +224,7 @@ class Chronology:
         Returns:
             Bill: Bill details information retrieved from bill details page.
         """
-        return Bill(Chronology.__extract_title(content), Chronology.__extract_wording(billDetailsUrl), Chronology.__extract_date(content))
+        return Bill(Chronology.__extract_title(billDetailsUrl, content), Chronology.__extract_wording(billDetailsUrl), Chronology.__extract_date(content))
 
     @staticmethod
     def __get_bills(url: str) -> List[str]:
@@ -180,11 +241,14 @@ class Chronology:
         return [parent_path + "/" + element.get("href") for element in table_rows]
 
     @staticmethod
-    def __extract_title(billDetailsPageContent: html.HtmlElement) -> str:
+    def __extract_title(bill_details_url: str, bill_details_page_content: html.HtmlElement) -> str:
         """Extract title from bill details HTML page.
 
         Args:
-            billDetailsPageContent (html.HtmlElement): Bill details HTML
+            bill_details_url (str): Original URL from which
+            bill_details_page_content was downloaded. Used only for error
+            messages.
+            bill_details_page_content (html.HtmlElement): Bill details HTML
             content.
 
         Raises:
@@ -193,13 +257,22 @@ class Chronology:
         Returns:
             str: Bill title text without any prefixes.
         """
-        prefixed_title: List[html.HtmlElement] = billDetailsPageContent.xpath(
+        prefixed_title: List[html.HtmlElement] = bill_details_page_content.xpath(
             "//div[@class='contentHead']//h2")
+        if len(prefixed_title) == 0:
+            prefixed_title = bill_details_page_content.xpath(
+                "//div[@class='contentHead']//h1")
+        if len(prefixed_title) == 0:
+            raise ValueError(
+                f"Bill details page did not contain an <h2> or <h1> header in expected <div class='contentHead'> location: {bill_details_url}")
+
+        title: html.HtmlElement = prefixed_title[0]
+        text: str = Scraper.convert_to_text(title)
         match: re.Match = re.match(
-            PREFIXED_TITLE_PATTERN, prefixed_title[0].text)
+            PREFIXED_TITLE_PATTERN, text.replace("\r\n", ""))
         if not match:
             raise ValueError(
-                "Bill details page did not contain expected title pattern.")
+                f"Bill details page did not contain expected title pattern: {bill_details_url}")
         return match.group(1)
 
     @staticmethod
@@ -220,7 +293,7 @@ class Chronology:
         response.encoding = response.apparent_encoding
         content: html.HtmlElement = html.fromstring(response.text)
         paragraphs: List[html.HtmlElement] = content.xpath(
-            "//div[contains(@class, 'mod-text')]//p")
+            "//div[contains(@class, 'mod-text')]")
         return Scraper.convert_to_text(paragraphs).strip()
 
     @staticmethod
@@ -265,13 +338,13 @@ class Chronology:
             Decimal: Equivalent count to canton_count_with_fraction.
         """
         components: List[str] = canton_count_with_fraction.split(" ")
-        full_cantons: str = components[0]
-        count = Decimal(full_cantons)
-        half_cantons: str | None = None if len(
-            components) == 1 else components[1]
-        if half_cantons:
-            division: List[str] = half_cantons.split("/")
-            dividend = Decimal(division[0])
-            divisor = Decimal(division[1])
-            count += dividend / divisor
+        count = Decimal(0)
+        for component in components:
+            if "/" in component:
+                division: List[str] = component.split("/")
+                dividend = Decimal(division[0])
+                divisor = Decimal(division[1])
+                count += dividend / divisor
+            elif component != "":
+                count += Decimal(component)
         return count
