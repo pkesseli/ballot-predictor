@@ -4,10 +4,12 @@ from bp.entity.ballot import BallotStatus, DoubleMajorityBallot
 from bp.entity.bill import Bill
 from bp.entity.result import DoubleMajorityBallotResult
 
+import Levenshtein
 import re
 import requests
 from datetime import datetime
 from decimal import Decimal
+from thefuzz import fuzz
 from lxml import html
 from typing import List
 
@@ -88,8 +90,8 @@ class Chronology:
 
         formatted_date: str = vote_row.xpath("td")[1].text_content().strip()
         date: datetime = Chronology.__parse_timestamp(formatted_date)
-        voteResultUrl: str = f"https://www.bk.admin.ch/ch/d/pore/va/{date.year}{date.month:02d}{date.day:02d}/index.html"
-        response: requests.Response = requests.get(voteResultUrl)
+        vote_result_url: str = f"https://www.bk.admin.ch/ch/d/pore/va/{date.year}{date.month:02d}{date.day:02d}/index.html"
+        response: requests.Response = requests.get(vote_result_url)
         response.encoding = response.apparent_encoding
         content: html.HtmlElement = html.fromstring(response.text)
 
@@ -118,8 +120,15 @@ class Chronology:
         Returns:
             Decimal: Number of cantons which accepted the bill.
         """
-        if "für eine Reform des Steuerwesens (Gerechtere Besteuerung und Abschaffung der Steuerprivilegien)" == title:
-            return Decimal(0.5)
+        match title:
+            case "für eine Reform des Steuerwesens (Gerechtere Besteuerung und Abschaffung der Steuerprivilegien)":
+                return Decimal(0.5)
+            case "Heranziehung der öffentlichen Unternehmungen zu einem Beitrag an die Kosten der Landesverteidigung" | "Bekämpfung des Alkoholismus":
+                return Decimal(0)
+            case "Neuordnung des Alkoholwesens":
+                return Decimal(8.5)
+            case "Totalrevision der Bundesverfassung":
+                return Decimal(3)
 
         formatted_accepting_cantons: str = rows[1].xpath("td")[
             1].text_content()
@@ -129,7 +138,9 @@ class Chronology:
     def __find_result_table(content: html.HtmlElement, title: str) -> html.HtmlElement:
         """Vote results are published per voting day, so multiple vote results
         are on the same page. This method identifies the correct results table
-        for the given bill.
+        for the given bill using string similarity ratios. Also contains a few
+        explicit mappings where the name in the results document was changed to
+        a degree that it can no longer be associated with the bill.
 
         Args:
             content (html.HtmlElement): Voting day results page.
@@ -138,36 +149,40 @@ class Chronology:
         Returns:
             html.HtmlElement: Table containing the vote results.
         """
-        title = title.lower()
-        escaped_title = title.replace("(", "[").replace(")", "]").replace(
-            "ja zur komplementärmedizin", "zukunft mit komplementärmedizin").replace(
-                "für tiefere krankenkassenprämien in der grundversicherung", "für qualität und wirtschaftlichkeit in der krankenversicherung").replace(
-                    "überschüssige goldreserven in den ahv-fonds [goldinitiative]", "ueberschüssige goldreserven in den ahv-fonds (goldinitiative)").replace(
-                        "strom ohne atom - für eine energiewende und die schrittweise stilllegung der atomkraftwerke [strom ohne atom]", " strom ohne atom - für eine energiewende und schrittweise stilllegung der atomkraftwerke (strom ohne atom)").replace(
-                            "moratoriumplus - für die verlängerung des atomkraftwerk-baustopps und die begrenzung des atomrisikos [moratoriumplus]", "moratorium plus - für die verlängerung des atomkraftwerk-baustopps und die begrenzung des atomrisikos (moratoriumplus)").replace(
-                                "für die belohnung des energiesparens und gegen die energieverschwendung [energie-umwelt-initiative]", "verfassungsartikel über eine energielenkungsabgabe für die umwelt").replace(
-                                    "für einen solar-rappen [solar-initiative]", "für einen solarrappen (solar-initiative").replace(
-                                        "zum schutz von leben und umwelt vor genmanipulationen [gen-schutz-initiative]", "zum schutz von leben und umwelt vor genmanipulation (gen-schutz-initiative)").replace(
-                                            "für einen arbeitsfreien bundesfeiertag [\"1. august-initiative\"]", "für einen arbeitsfreien bundesfeiertag (1. august-initiative)").replace(
-                                                "für eine freie aarelandschaft zwischen biel und solothurn/zuchwil", "für eine autobahnfreie aarelandschaft zwischen biel und solothurn/zuchwil").replace(
-                                                    "für die koordination des schuljahrbeginns", "für die koordination des schuljahresbeginns in allen kantonen").replace(
-                                                        "für die fristenlösung [beim schwangerschaftsabbruch]", "für die fristenlösung").replace(
-                                                            "für 12 motorfahrzeugfreie sonntage pro jahr", "für 12 motorfahrzeugfreie und motorflugzeugfreie sonntage pro jahr").replace(
-                                                                "gegen die luftverschmutzung durch motorfahrzeuge [albatrosinitiative]", "gegen die luftverschmutzung durch motorfahrzeuge").replace(
-                                                                    "für die vermehrte mitbestimmung der bundesversammlung und des schweizervolkes im nationalstrassenbau", "demokratie im nationalstrassenbau").replace(
-                                                                        "für eine reichtumssteuer", "zur steuerharmonisierung, zur stärkeren besteuerung des reichtums und zur entlastung der unteren einkommen (reichtumsteuer-initiative)").replace(
-                                                                            "für eine reform des steuerwesens [gerechtere besteuerung und abschaffung der steuerprivilegien]", "gerechtere besteuerung und die abschaffung der steuerprivilegien").replace(
-                                                                                "für eine beschränkung der einbürgerungen", "zur beschränkung der einbürgerungen").replace(
-                                                                                    "ja zu europa!", "ja zu europa").strip()
+        title = title.replace(
+            "für eine Reichtumssteuer", "Volksbegehren 'zur Steuerharmonisierung, zur stärkeren Besteuerung des Reichtums und zur Entlastung der unteren Einkommen (Reichtumsteuer-Initiative)'").replace(
+                "für die Mitbestimmung der Arbeitnehmer", "Bundesbeschluss vom 04.10.1974 betreffend das Volksbegehren über die Mitbestimmung").replace(
+                    "Förderung des Wohnungsbaus", "Bundesbeschluss vom 17.12.1971 betreffend die Ergänzung der Bundesverfassung durch einen Artikel 34sexies über den Wohnungsbau und betreffend das Volksbegehren zur Bildung eines Wohnbaufonds (Denner-Initiative)").replace(
+                        "Soziale Krankenversicherung", "Bundesbeschluss vom 22.03.1974 über das Volksbegehren für die soziale Krankenversicherung und die Aenderung der Bundesverfassung auf dem Gebiet der Kranken-, Unfall- und Mutterschaftsversicherung").replace(
+                            "betreffend die Erlangung des Schweizerbürgerrechts, Teil I; betreffend die Ausweisung von Ausländern, Teil II", "Eidgenössische Volksinitiative 'betreffend die Ausweisung von Ausländern, Teil II'").lower()
+        initiative_titles: List[html.HtmlElement] = content.xpath(
+            "//div[contains(@class, 'mod-text')]//h3")
+        max_levenshtein_ratio: float = 0.0
+        max_levenshtein_title: str = ""
+        max_token_sort_ratio: int = 0
+        max_token_sort_title: str = ""
+        best_initiative_element: html.HtmlElement = None
 
-        initiative_titles: List[html.HtmlElement] = content.xpath("//h3")
         for initiative_title in initiative_titles:
             actual_title: str = Scraper.convert_to_text(initiative_title)
-            actual_title = actual_title.replace("\r\n", " ")
-            actual_title = actual_title.replace("\n", " ")
             actual_title = actual_title.lower()
-            if title in actual_title or escaped_title in actual_title:
-                return initiative_title
+
+            levenshtein_ratio: float = Levenshtein.ratio(title, actual_title)
+            token_sort_ratio: int = fuzz.partial_token_sort_ratio(
+                title, actual_title)
+            if levenshtein_ratio > max_levenshtein_ratio and token_sort_ratio > max_token_sort_ratio:
+                best_initiative_element = initiative_title
+            if levenshtein_ratio > max_levenshtein_ratio:
+                max_levenshtein_ratio = levenshtein_ratio
+                max_levenshtein_title = actual_title
+            if token_sort_ratio > max_token_sort_ratio:
+                max_token_sort_ratio = token_sort_ratio
+                max_token_sort_title = actual_title
+
+        if (max_levenshtein_title != max_token_sort_title):
+            raise ValueError(
+                f"Inconclusive similarity evaluation for: {title}")
+        return best_initiative_element
 
     @staticmethod
     def __get_status(content: html.HtmlElement, vote_row: html.HtmlElement | None) -> BallotStatus:
