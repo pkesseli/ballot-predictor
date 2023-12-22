@@ -47,7 +47,7 @@ class Chronology:
         details as well as optional ballot results.
 
         Args:
-            billDetailsUrl (str): Bill details page from which to extract data.
+            bill_details_url (str): Bill details page from which to extract data.
 
         Returns:
             DoubleMajorityBallot: Bill information with optional result.
@@ -229,17 +229,17 @@ class Chronology:
         return cell[0].getparent()
 
     @staticmethod
-    def __get_bill(billDetailsUrl: str, content: html.HtmlElement) -> Bill:
+    def __get_bill(bill_details_url: str, content: html.HtmlElement) -> Bill:
         """Retrieve bill details information.
 
         Args:
-            billDetailsUrl (str): URL of bill details page.
-            content (html.HtmlElement): Page content of billDetailsUrl.
+            bill_details_url (str): URL of bill details page.
+            content (html.HtmlElement): Page content of bill_details_url.
 
         Returns:
             Bill: Bill details information retrieved from bill details page.
         """
-        return Bill(Chronology.__extract_title(billDetailsUrl, content), Chronology.__extract_wording(billDetailsUrl), Chronology.__extract_date(content))
+        return Bill(Chronology.__extract_title(bill_details_url, content), Chronology.__extract_wording(bill_details_url), Chronology.__extract_date(content))
 
     @staticmethod
     def __get_bills(url: str) -> List[str]:
@@ -291,11 +291,11 @@ class Chronology:
         return match.group(1)
 
     @staticmethod
-    def __extract_wording(billDetailsUrl: str) -> str:
+    def __extract_wording(bill_details_url: str) -> str:
         """Download and extract bill wording for the given bill.
 
         Args:
-            billDetailsUrl (str): URL of details page of bill for which to
+            bill_details_url (str): URL of details page of bill for which to
             download and extract the wording. The wording is stored in a
             companion page that can be statically derived from this URL.
 
@@ -303,7 +303,7 @@ class Chronology:
             str: Text representation of the wording of the bill, suitable for
             predictions.
         """
-        billWordingUrl: str = billDetailsUrl.replace(".html", "t.html")
+        billWordingUrl: str = bill_details_url.replace(".html", "t.html")
         response: requests.Response = requests.get(billWordingUrl)
         response.encoding = response.apparent_encoding
         content: html.HtmlElement = html.fromstring(response.text)
@@ -312,17 +312,17 @@ class Chronology:
         return Scraper.convert_to_text(paragraphs).strip()
 
     @staticmethod
-    def __extract_date(billDetailsPageContent: html.HtmlElement) -> datetime:
+    def __extract_date(bill_details_page_content: html.HtmlElement) -> datetime:
         """Extracts a single date to associate with the bill.
 
         Args:
-            billDetailsPageContent (html.HtmlElement): Bill details HTML
+            bill_details_page_content (html.HtmlElement): Bill details HTML
             content.
 
         Returns:
             datetime: Date timestamp parsed from details page.
         """
-        last_table_row: html.HtmlElement = billDetailsPageContent.xpath(
+        last_table_row: html.HtmlElement = bill_details_page_content.xpath(
             "//tr")[-1]
         second_cell: html.HtmlElement = last_table_row.xpath("td")[1]
         formatted_date: str = second_cell.text_content()
