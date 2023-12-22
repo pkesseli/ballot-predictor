@@ -32,7 +32,7 @@ def main():
 
     serialised = jsonpickle.encode(initiatives)
     serialised += "\n"
-    with open("bp/resources/initiatives.json", "w+") as file:
+    with open("bp/resources/bk.admin.ch/initiatives.json", "w+") as file:
         file.write(serialised)
 
 
