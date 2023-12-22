@@ -1,4 +1,4 @@
-from bp.data.openthesaurus import OpenThesaurus
+from bp.augment.openthesaurus import OpenThesaurus
 
 import os
 import tempfile
