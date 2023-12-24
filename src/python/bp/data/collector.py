@@ -17,7 +17,7 @@ def main():
     jsonpickle.handlers.registry.register(BallotStatus, BallotStatusHandler)
     jsonpickle.handlers.registry.register(datetime, DatetimeHandler)
     jsonpickle.handlers.registry.register(Decimal, DecimalHandler)
-    jsonpickle.set_encoder_options('json', sort_keys=True, indent=4)
+    jsonpickle.set_encoder_options("json", sort_keys=True, indent=4)
     initiativeUrls: List[str] = Chronology.get_initiatives()
     initiatives: List[DoubleMajorityBallot] = []
 

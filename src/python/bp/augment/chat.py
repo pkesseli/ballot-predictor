@@ -25,5 +25,5 @@ class ChatGpt(Chat):
     """Implements Chat interface using the ChatGPT API.
     """
 
-    def prompt(self, queries: List[str]) -> List[str]:
+    def prompt(self, _: List[str]) -> List[str]:
         return []

@@ -50,6 +50,46 @@ class MockChat(Chat):
   {
     "title": "für die Betäubung vor dem Töten",
     "wording": "Die Volksinitiative lautet:\n\nDie Bundesverfassung wird wie folgt ergänzt:\n\nArt. 25^bis (neu)\n\nBevor Tiere getötet werden, ist eine vorherige Betäubung vor dem Blutentzug zwingend vorgeschrieben, und zwar für jede Schlachtart und Viehgattung."
+  },
+  {
+    "title": "gegen ein Verbot des Schlachtens ohne vorherige Betäubung",
+    "wording": "Die Volksinitiative lautet:\n\nDie Bundesverfassung wird wie folgt ergänzt:\n\nArt. 25^bis (neu)\n\nDas Schlachten der Tiere ohne vorherige Betäubung vor dem Blutentzuge ist bei jeder Schlachtart und Viehgattung ausnahmslos erlaubt."
+  },
+  {
+    "title": "für die uneingeschränkte Schlachtung ohne vorherige Betäubung",
+    "wording": "Die Volksinitiative lautet:\n\nDie Bundesverfassung wird wie folgt ergänzt:\n\nArt. 25^bis (neu)\n\nDas Schlachten der Tiere ohne vorherige Betäubung vor dem Blutentzuge ist bei jeder Schlachtart und Viehgattung uneingeschränkt gestattet."
+  },
+  {
+    "title": "gegen die Einschränkung des Schlachtens ohne vorherige Betäubung",
+    "wording": "Die Volksinitiative lautet:\n\nDie Bundesverfassung wird wie folgt ergänzt:\n\nArt. 25^bis (neu)\n\nDas Schlachten der Tiere ohne vorherige Betäubung vor dem Blutentzuge ist bei jeder Schlachtart und Viehgattung nicht eingeschränkt."
+  },
+  {
+    "title": "für das freie Schlachten ohne vorherige Betäubung",
+    "wording": "Die Volksinitiative lautet:\n\nDie Bundesverfassung wird wie folgt ergänzt:\n\nArt. 25^bis (neu)\n\nDas Schlachten der Tiere ohne vorherige Betäubung vor dem Blutentzuge ist bei jeder Schlachtart und Viehgattung frei gestellt."
+  },
+  {
+    "title": "gegen jegliche Beschränkung des Schlachtens ohne vorherige Betäubung",
+    "wording": "Die Volksinitiative lautet:\n\nDie Bundesverfassung wird wie folgt ergänzt:\n\nArt. 25^bis (neu)\n\nDas Schlachten der Tiere ohne vorherige Betäubung vor dem Blutentzuge ist bei jeder Schlachtart und Viehgattung ohne jegliche Beschränkung erlaubt."
+  },
+  {
+    "title": "für die uneingeschränkte Freiheit des Schlachtens ohne vorherige Betäubung",
+    "wording": "Die Volksinitiative lautet:\n\nDie Bundesverfassung wird wie folgt ergänzt:\n\nArt. 25^bis (neu)\n\nDas Schlachten der Tiere ohne vorherige Betäubung vor dem Blutentzuge ist bei jeder Schlachtart und Viehgattung uneingeschränkt freigegeben."
+  },
+  {
+    "title": "gegen jegliche Regelung zum Schlachten ohne vorherige Betäubung",
+    "wording": "Die Volksinitiative lautet:\n\nDie Bundesverfassung wird wie folgt ergänzt:\n\nArt. 25^bis (neu)\n\nDas Schlachten der Tiere ohne vorherige Betäubung vor dem Blutentzuge ist bei jeder Schlachtart und Viehgattung ohne jegliche Regelung erlaubt."
+  },
+  {
+    "title": "für die Abschaffung jeglicher Verbote beim Schlachten ohne vorherige Betäubung",
+    "wording": "Die Volksinitiative lautet:\n\nDie Bundesverfassung wird wie folgt ergänzt:\n\nArt. 25^bis (neu)\n\nDas Schlachten der Tiere ohne vorherige Betäubung vor dem Blutentzuge ist bei jeder Schlachtart und Viehgattung ohne jegliche Verbote gestattet."
+  },
+  {
+    "title": "gegen jegliche Vorschriften zum Schlachten ohne vorherige Betäubung",
+    "wording": "Die Volksinitiative lautet:\n\nDie Bundesverfassung wird wie folgt ergänzt:\n\nArt. 25^bis (neu)\n\nDas Schlachten der Tiere ohne vorherige Betäubung vor dem Blutentzuge ist bei jeder Schlachtart und Viehgattung ohne jegliche Vorschriften erlaubt."
+  },
+  {
+    "title": "für die uneingeschränkte Erlaubnis des Schlachtens ohne vorherige Betäubung",
+    "wording": "Die Volksinitiative lautet:\n\nDie Bundesverfassung wird wie folgt ergänzt:\n\nArt. 25^bis (neu)\n\nDas Schlachten der Tiere ohne vorherige Betäubung vor dem Blutentzuge ist bei jeder Schlachtart und Viehgattung uneingeschränkt erlaubt."
   }
 ]"""]
 
@@ -57,10 +97,26 @@ class MockChat(Chat):
 class TestBillAugmenter(unittest.TestCase):
 
     def test_paraphrase_and_contradict(self):
-        augment: BillAugmenter = TestBillAugmenter.__create_mock_augment()
-        augmented_bills: List[Bill] = augment.paraphrase_and_contradict(
+        augmenter: BillAugmenter = TestBillAugmenter.__create_mock_augment()
+        augmented_ballots: List[DoubleMajorityBallot] = augmenter.paraphrase_and_contradict(
             TestBillAugmenter.__get_ballots())
-        self.assertListEqual([], augmented_bills)
+        self.assertEqual(20, len(augmented_ballots))
+        self.assertEqual(
+            "für ein Verbot des Schlachtens ohne vorherige Betäubung", augmented_ballots[0].bill.title)
+        self.assertEqual(
+            "Die Volksinitiative lautet:\n\nDie Bundesverfassung wird wie folgt ergänzt:\n\nArt. 25^bis (neu)\n\nDas Schlachten der Tiere ohne vorherige Betäubung vor dem Blutentzuge ist bei jeder Schlachtart und Viehgattung ausnahmslos untersagt.", augmented_ballots[0].bill.wording)
+        self.assertEqual(
+            "gegen das Schlachten ohne vorherige Betäubung", augmented_ballots[1].bill.title)
+        self.assertEqual(
+            "Die Volksinitiative lautet:\n\nDie Bundesverfassung wird wie folgt ergänzt:\n\nArt. 25^bis (neu)\n\nDas Töten von Tieren ohne vorherige Betäubung vor dem Blutentzuge ist bei jeder Schlachtart und Viehgattung ausnahmslos untersagt.", augmented_ballots[1].bill.wording)
+        self.assertEqual(
+            "für ein Verbot des Schlachtens ohne vorherige Betäubung", augmented_ballots[0].bill.title)
+        self.assertEqual(
+            "Die Volksinitiative lautet:\n\nDie Bundesverfassung wird wie folgt ergänzt:\n\nArt. 25^bis (neu)\n\nDas Schlachten der Tiere ohne vorherige Betäubung vor dem Blutentzuge ist bei jeder Schlachtart und Viehgattung ausnahmslos untersagt.", augmented_ballots[0].bill.wording)
+        self.assertEqual(
+            "für die uneingeschränkte Erlaubnis des Schlachtens ohne vorherige Betäubung", augmented_ballots[19].bill.title)
+        self.assertEqual(
+            "Die Volksinitiative lautet:\n\nDie Bundesverfassung wird wie folgt ergänzt:\n\nArt. 25^bis (neu)\n\nDas Schlachten der Tiere ohne vorherige Betäubung vor dem Blutentzuge ist bei jeder Schlachtart und Viehgattung uneingeschränkt erlaubt.", augmented_ballots[19].bill.wording)
 
     def test_augment_vote(self):
         augment: BillAugmenter = TestBillAugmenter.__create_mock_augment()
