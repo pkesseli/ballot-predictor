@@ -120,19 +120,31 @@ class Chronology:
         Returns:
             Decimal: Number of cantons which accepted the bill.
         """
+        share_of_canton_votes: Decimal = None
+        number_of_canton_votes_before_1979 = Decimal(22)
         match title:
             case "für eine Reform des Steuerwesens (Gerechtere Besteuerung und Abschaffung der Steuerprivilegien)":
-                return Decimal(0.5)
+                share_of_canton_votes = Decimal(
+                    0.5) / number_of_canton_votes_before_1979
             case "Heranziehung der öffentlichen Unternehmungen zu einem Beitrag an die Kosten der Landesverteidigung" | "Bekämpfung des Alkoholismus":
-                return Decimal(0)
+                share_of_canton_votes = Decimal(0)
             case "Neuordnung des Alkoholwesens":
-                return Decimal(8.5)
+                share_of_canton_votes = Decimal(
+                    8.5) / number_of_canton_votes_before_1979
             case "Totalrevision der Bundesverfassung":
-                return Decimal(3)
+                share_of_canton_votes = Decimal(
+                    3) / number_of_canton_votes_before_1979
 
-        formatted_accepting_cantons: str = rows[1].xpath("td")[
-            1].text_content()
-        return Chronology.__parse_canton_count(formatted_accepting_cantons)
+        if (share_of_canton_votes is None):
+            canton_cells: List[html.HtmlElement] = rows[1].xpath("td")
+            accepting_cantons: Decimal = Chronology.__parse_canton_count(
+                canton_cells[1].text_content())
+            rejecting_cantons: Decimal = Chronology.__parse_canton_count(
+                canton_cells[2].text_content())
+            share_of_canton_votes = accepting_cantons / \
+                (accepting_cantons + rejecting_cantons)
+
+        return (Decimal(100) * share_of_canton_votes).quantize(Decimal("0.01"))
 
     @staticmethod
     def __find_result_table(content: html.HtmlElement, title: str) -> html.HtmlElement:

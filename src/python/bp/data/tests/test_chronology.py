@@ -45,7 +45,8 @@ class TestChronology(unittest.TestCase):
 
     def test_find_result_table_no_match(self):
         page: html.HtmlElement = html.fromstring("<p></p>")
-        self.assertIsNone(Chronology._Chronology__find_result_table(page, "unknown bill"))
+        self.assertIsNone(
+            Chronology._Chronology__find_result_table(page, "unknown bill"))
 
     def test_find_result_table_inconclusive(self):
         page: html.HtmlElement = html.fromstring("""
@@ -61,12 +62,16 @@ class TestChronology(unittest.TestCase):
             </div>
             """)
         with self.assertRaises(ValueError):
-            Chronology._Chronology__find_result_table(page, "Für eine Reichtumssteuer")
+            Chronology._Chronology__find_result_table(
+                page, "Für eine Reichtumssteuer")
 
     def test_extract_accepting_cantons_incomplete_info_on_website(self):
-        self.assertEqual(Decimal(0), Chronology._Chronology__extract_accepting_cantons("Bekämpfung des Alkoholismus", None))
-        self.assertEqual(Decimal(8.5), Chronology._Chronology__extract_accepting_cantons("Neuordnung des Alkoholwesens", None))
-        self.assertEqual(Decimal(3), Chronology._Chronology__extract_accepting_cantons("Totalrevision der Bundesverfassung", None))
+        self.assertEqual(Decimal(0), Chronology._Chronology__extract_accepting_cantons(
+            "Bekämpfung des Alkoholismus", None))
+        self.assertAlmostEqual(Decimal(38.64), Chronology._Chronology__extract_accepting_cantons(
+            "Neuordnung des Alkoholwesens", None), 2)
+        self.assertAlmostEqual(Decimal(13.64), Chronology._Chronology__extract_accepting_cantons(
+            "Totalrevision der Bundesverfassung", None), 2)
 
     def test_get_initiative_modern_accepted(self):
         ballot: DoubleMajorityBallot = Chronology.get_initiative(
@@ -97,7 +102,8 @@ Die Bundesversammlung verabschiedet die gesetzlichen Ausführungsbestimmungen in
         self.assertEqual(datetime(2018, 3, 20, 0, 0, 0, 0), ballot.bill.date)
         self.assertEqual(BallotStatus.COMPLETED, ballot.status)
         self.assertAlmostEqual(Decimal(56.7), ballot.result.percentage_yes, 2)
-        self.assertAlmostEqual(Decimal(15), ballot.result.accepting_cantons, 2)
+        self.assertAlmostEqual(
+            Decimal(65.22), ballot.result.accepting_cantons, 2)
 
     def test_get_initiative_historic_accepted(self):
         ballot: DoubleMajorityBallot = Chronology.get_initiative(
@@ -115,7 +121,7 @@ Das Schlachten der Tiere ohne vorherige Betäubung vor dem Blutentzuge ist bei j
         self.assertEqual(BallotStatus.COMPLETED, ballot.status)
         self.assertAlmostEqual(Decimal(60.1), ballot.result.percentage_yes, 2)
         self.assertAlmostEqual(
-            Decimal(11.5), ballot.result.accepting_cantons, 2)
+            Decimal(52.27), ballot.result.accepting_cantons, 2)
 
     def test_get_initiative_modern_failed(self):
         ballot: DoubleMajorityBallot = Chronology.get_initiative(
@@ -372,7 +378,7 @@ Art. 197 Ziff. 12^2
         self.assertEqual(BallotStatus.COMPLETED, ballot.status)
         self.assertAlmostEqual(Decimal(37.1), ballot.result.percentage_yes, 2)
         self.assertAlmostEqual(
-            Decimal(0.5), ballot.result.accepting_cantons, 2)
+            Decimal(2.17), ballot.result.accepting_cantons, 2)
 
     def test_get_initiative_bug_461(self):
         ballot: DoubleMajorityBallot = Chronology.get_initiative(
@@ -462,7 +468,8 @@ Art. 88                   Fuss-, Wander- und Velowege
         self.assertEqual(datetime(2015, 3, 3, 0, 0, 0, 0), ballot.bill.date)
         self.assertEqual(BallotStatus.COMPLETED, ballot.status)
         self.assertAlmostEqual(Decimal(73.6), ballot.result.percentage_yes, 2)
-        self.assertAlmostEqual(Decimal(23), ballot.result.accepting_cantons, 2)
+        self.assertAlmostEqual(
+            Decimal(100), ballot.result.accepting_cantons, 2)
 
     def test_get_initiative_bug_456(self):
         ballot: DoubleMajorityBallot = Chronology.get_initiative(
@@ -483,7 +490,8 @@ __________________
         self.assertEqual(datetime(2014, 9, 23, 0, 0, 0, 0), ballot.bill.date)
         self.assertEqual(BallotStatus.COMPLETED, ballot.status)
         self.assertAlmostEqual(Decimal(45.3), ballot.result.percentage_yes, 2)
-        self.assertAlmostEqual(Decimal(5), ballot.result.accepting_cantons, 2)
+        self.assertAlmostEqual(
+            Decimal(21.74), ballot.result.accepting_cantons, 2)
 
     def test_get_initiative_bug_346(self):
         ballot: DoubleMajorityBallot = Chronology.get_initiative(
@@ -566,4 +574,5 @@ Der deutsche Text der Initiative ist massgebend.""", ballot.bill.wording)
         self.assertEqual(datetime(1973, 5, 3, 0, 0, 0, 0), ballot.bill.date)
         self.assertEqual(BallotStatus.COMPLETED, ballot.status)
         self.assertAlmostEqual(Decimal(42.2), ballot.result.percentage_yes, 2)
-        self.assertAlmostEqual(Decimal(0.5), ballot.result.accepting_cantons, 2)
+        self.assertAlmostEqual(
+            Decimal(2.27), ballot.result.accepting_cantons, 2)
