@@ -836,7 +836,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0.5",
+            "accepting_cantons": "2.17",
             "percentage_yes": "37.1",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -851,7 +851,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "31.9",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -881,7 +881,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "15",
+            "accepting_cantons": "65.22",
             "percentage_yes": "56.7",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -898,7 +898,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "3.5",
+            "accepting_cantons": "15.22",
             "percentage_yes": "38.3",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -941,7 +941,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "35.1",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -971,7 +971,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "20.9",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -1014,7 +1014,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "3.5",
+            "accepting_cantons": "15.22",
             "percentage_yes": "42.5",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -1031,7 +1031,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0.5",
+            "accepting_cantons": "2.17",
             "percentage_yes": "39.3",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -1048,7 +1048,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "22.5",
+            "accepting_cantons": "97.83",
             "percentage_yes": "61.0",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -1065,7 +1065,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0.5",
+            "accepting_cantons": "2.17",
             "percentage_yes": "39.4",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -1134,7 +1134,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "18",
+            "accepting_cantons": "78.26",
             "percentage_yes": "51.2",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -1164,7 +1164,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "4.5",
+            "accepting_cantons": "19.57",
             "percentage_yes": "42.9",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -1181,7 +1181,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "8.5",
+            "accepting_cantons": "36.96",
             "percentage_yes": "50.7",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -1198,7 +1198,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "36.3",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -1215,7 +1215,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "33.7",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -1232,7 +1232,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "23",
+            "accepting_cantons": "100.00",
             "percentage_yes": "73.6",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -1275,7 +1275,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "4",
+            "accepting_cantons": "17.39",
             "percentage_yes": "31.6",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -1292,7 +1292,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "5",
+            "accepting_cantons": "21.74",
             "percentage_yes": "45.3",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -1309,7 +1309,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "28.4",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -1326,7 +1326,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "24.3",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -1343,7 +1343,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "4",
+            "accepting_cantons": "17.39",
             "percentage_yes": "38.7",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -1412,7 +1412,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "23",
+            "accepting_cantons": "100.00",
             "percentage_yes": "78.7",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -1507,7 +1507,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "5",
+            "accepting_cantons": "21.74",
             "percentage_yes": "40.6",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -1524,7 +1524,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "29.2",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -1554,7 +1554,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "1.5",
+            "accepting_cantons": "6.52",
             "percentage_yes": "40.1",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -1597,7 +1597,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "4.5",
+            "accepting_cantons": "19.57",
             "percentage_yes": "41.1",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -1666,7 +1666,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "23.1",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -1683,7 +1683,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "32.4",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -1765,7 +1765,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "22.7",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -1795,7 +1795,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "29.0",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -1812,7 +1812,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "14.5",
+            "accepting_cantons": "63.04",
             "percentage_yes": "50.3",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -1868,7 +1868,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "8.0",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -1898,7 +1898,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "5",
+            "accepting_cantons": "21.74",
             "percentage_yes": "45.8",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -1915,7 +1915,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "25.9",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -1932,7 +1932,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "24.6",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -1949,7 +1949,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "16.5",
+            "accepting_cantons": "71.74",
             "percentage_yes": "49.2",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -1966,7 +1966,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "1",
+            "accepting_cantons": "4.35",
             "percentage_yes": "40.8",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -1983,7 +1983,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "1",
+            "accepting_cantons": "4.35",
             "percentage_yes": "36.4",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -2000,7 +2000,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "4",
+            "accepting_cantons": "17.39",
             "percentage_yes": "38.2",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -2017,7 +2017,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "23.7",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -2125,7 +2125,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "27.5",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -2142,7 +2142,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "26.8",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -2198,7 +2198,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "28.5",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -2241,7 +2241,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0.5",
+            "accepting_cantons": "2.17",
             "percentage_yes": "30.2",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -2258,7 +2258,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "23.7",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -2275,7 +2275,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "2.5",
+            "accepting_cantons": "10.87",
             "percentage_yes": "41.5",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -2305,7 +2305,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "23",
+            "accepting_cantons": "100.00",
             "percentage_yes": "63.5",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -2322,7 +2322,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "34.7",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -2339,7 +2339,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "23",
+            "accepting_cantons": "100.00",
             "percentage_yes": "88.1",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -2369,7 +2369,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "1",
+            "accepting_cantons": "4.35",
             "percentage_yes": "34.0",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -2399,7 +2399,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "22",
+            "accepting_cantons": "95.65",
             "percentage_yes": "62.0",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -2429,7 +2429,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "23",
+            "accepting_cantons": "100.00",
             "percentage_yes": "87.1",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -2446,7 +2446,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "24.7",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -2463,7 +2463,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "33.5",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -2480,7 +2480,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "5.5",
+            "accepting_cantons": "23.91",
             "percentage_yes": "43.7",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -2510,7 +2510,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "9.5",
+            "accepting_cantons": "41.30",
             "percentage_yes": "47.4",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -2527,7 +2527,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "31.1",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -2544,7 +2544,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "17.5",
+            "accepting_cantons": "76.09",
             "percentage_yes": "52.3",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -2574,7 +2574,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "23",
+            "accepting_cantons": "100.00",
             "percentage_yes": "72.7",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -2604,7 +2604,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "19.5",
+            "accepting_cantons": "84.78",
             "percentage_yes": "57.5",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -2621,7 +2621,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "4.5",
+            "accepting_cantons": "19.57",
             "percentage_yes": "44.2",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -2664,7 +2664,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "3.5",
+            "accepting_cantons": "15.22",
             "percentage_yes": "41.5",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -2681,7 +2681,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "23",
+            "accepting_cantons": "100.00",
             "percentage_yes": "68.0",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -2698,7 +2698,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "31.8",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -2715,7 +2715,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "13.5",
+            "accepting_cantons": "58.70",
             "percentage_yes": "50.6",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -2758,7 +2758,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "29.5",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -2801,7 +2801,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "4",
+            "accepting_cantons": "17.39",
             "percentage_yes": "41.4",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -2831,7 +2831,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "34.0",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -2848,7 +2848,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "23",
+            "accepting_cantons": "100.00",
             "percentage_yes": "67.0",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -2865,7 +2865,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "18",
+            "accepting_cantons": "78.26",
             "percentage_yes": "51.9",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -2895,7 +2895,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "36.7",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -2912,7 +2912,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "1",
+            "accepting_cantons": "4.35",
             "percentage_yes": "36.2",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -2929,7 +2929,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "31.9",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -3011,7 +3011,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "2",
+            "accepting_cantons": "8.70",
             "percentage_yes": "28.8",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -3041,7 +3041,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "23",
+            "accepting_cantons": "100.00",
             "percentage_yes": "55.7",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -3058,7 +3058,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "24.8",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -3075,7 +3075,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "30.5",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -3183,7 +3183,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "9.5",
+            "accepting_cantons": "41.30",
             "percentage_yes": "49.8",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -3200,7 +3200,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "2.5",
+            "accepting_cantons": "10.87",
             "percentage_yes": "41.7",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -3256,7 +3256,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "37.2",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -3286,7 +3286,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "6",
+            "accepting_cantons": "26.09",
             "percentage_yes": "46.4",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -3316,7 +3316,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "12.5",
+            "accepting_cantons": "54.35",
             "percentage_yes": "49.9",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -3333,7 +3333,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "21.5",
+            "accepting_cantons": "93.48",
             "percentage_yes": "56.2",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -3363,7 +3363,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "12",
+            "accepting_cantons": "52.17",
             "percentage_yes": "54.6",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -3380,7 +3380,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "3",
+            "accepting_cantons": "13.04",
             "percentage_yes": "37.7",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -3410,7 +3410,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "18.2",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -3453,7 +3453,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "34.1",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -3470,7 +3470,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "25.4",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -3487,7 +3487,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "31.6",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -3504,7 +3504,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0.5",
+            "accepting_cantons": "2.17",
             "percentage_yes": "33.7",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -3521,7 +3521,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "1",
+            "accepting_cantons": "4.35",
             "percentage_yes": "41.6",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -3538,7 +3538,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "23.2",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -3555,7 +3555,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "21.9",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -3637,7 +3637,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "27.1",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -3654,7 +3654,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "17.9",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -3684,7 +3684,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "20.3",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -3701,7 +3701,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "30.0",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -3718,7 +3718,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "30.9",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -3761,7 +3761,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "37.6",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -3791,7 +3791,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "1",
+            "accepting_cantons": "4.35",
             "percentage_yes": "32.7",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -3834,7 +3834,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "34.1",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -3851,7 +3851,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "4",
+            "accepting_cantons": "17.39",
             "percentage_yes": "37.6",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -3933,7 +3933,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "23.2",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -3963,7 +3963,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "22.9",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -3980,7 +3980,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "7",
+            "accepting_cantons": "30.43",
             "percentage_yes": "46.0",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -3997,7 +3997,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "5",
+            "accepting_cantons": "21.74",
             "percentage_yes": "41.5",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -4014,7 +4014,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "6",
+            "accepting_cantons": "26.09",
             "percentage_yes": "39.5",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -4031,7 +4031,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "21.3",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -4048,7 +4048,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "36.2",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -4065,7 +4065,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "2.5",
+            "accepting_cantons": "10.87",
             "percentage_yes": "44.5",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -4082,7 +4082,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "31.3",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -4099,7 +4099,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "18.0",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -4116,7 +4116,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "23.0",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -4133,7 +4133,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "26.0",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -4176,7 +4176,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "29.3",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -4193,7 +4193,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "28.2",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -4236,7 +4236,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "25.9",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -4253,7 +4253,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "3",
+            "accepting_cantons": "13.04",
             "percentage_yes": "41.3",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -4270,7 +4270,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "33.3",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -4300,7 +4300,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "4",
+            "accepting_cantons": "17.39",
             "percentage_yes": "42.8",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -4317,7 +4317,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "11",
+            "accepting_cantons": "47.83",
             "percentage_yes": "46.3",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -4373,7 +4373,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "22.5",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -4442,7 +4442,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "23",
+            "accepting_cantons": "100.00",
             "percentage_yes": "77.6",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -4511,7 +4511,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "27.6",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -4528,7 +4528,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "7",
+            "accepting_cantons": "30.43",
             "percentage_yes": "44.7",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -4545,7 +4545,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "24.6",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -4601,7 +4601,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "27.8",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -4644,7 +4644,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "9",
+            "accepting_cantons": "39.13",
             "percentage_yes": "49.1",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -4674,7 +4674,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "16",
+            "accepting_cantons": "69.57",
             "percentage_yes": "51.9",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -4691,7 +4691,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "23",
+            "accepting_cantons": "100.00",
             "percentage_yes": "83.8",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -4734,7 +4734,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "25.5",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -4751,7 +4751,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "25.3",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -4859,7 +4859,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "34.0",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -4876,7 +4876,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "31.4",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -4893,7 +4893,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "32.7",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -4910,7 +4910,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "7",
+            "accepting_cantons": "30.43",
             "percentage_yes": "47.1",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -4927,7 +4927,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "19.5",
+            "accepting_cantons": "84.78",
             "percentage_yes": "54.5",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -5009,7 +5009,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "22",
+            "accepting_cantons": "95.65",
             "percentage_yes": "73.8",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -5039,7 +5039,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "3.5",
+            "accepting_cantons": "15.22",
             "percentage_yes": "43.6",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -5056,7 +5056,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "2",
+            "accepting_cantons": "8.70",
             "percentage_yes": "35.6",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -5125,7 +5125,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "23.4",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -5142,7 +5142,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "28.5",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -5159,7 +5159,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "1.5",
+            "accepting_cantons": "6.52",
             "percentage_yes": "37.1",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -5176,7 +5176,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "1",
+            "accepting_cantons": "4.35",
             "percentage_yes": "39.3",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -5193,7 +5193,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "6",
+            "accepting_cantons": "26.09",
             "percentage_yes": "38.0",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -5249,7 +5249,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "32.7",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -5266,7 +5266,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "2",
+            "accepting_cantons": "8.70",
             "percentage_yes": "34.3",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -5283,7 +5283,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "8",
+            "accepting_cantons": "34.78",
             "percentage_yes": "48.9",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -5300,7 +5300,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "37.1",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -5343,7 +5343,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "20",
+            "accepting_cantons": "86.96",
             "percentage_yes": "57.8",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -5412,7 +5412,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "30.8",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -5429,7 +5429,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "2.5",
+            "accepting_cantons": "10.87",
             "percentage_yes": "40.6",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -5446,7 +5446,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "2",
+            "accepting_cantons": "8.70",
             "percentage_yes": "35.1",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -5463,7 +5463,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "33.9",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -5493,7 +5493,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "18.4",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -5510,7 +5510,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "18.5",
+            "accepting_cantons": "80.43",
             "percentage_yes": "64.4",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -5540,7 +5540,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "6",
+            "accepting_cantons": "26.09",
             "percentage_yes": "45.8",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -5557,7 +5557,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "6",
+            "accepting_cantons": "26.09",
             "percentage_yes": "45.0",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -5574,7 +5574,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "29.5",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -5617,7 +5617,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "16.7",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -5634,7 +5634,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "1.5",
+            "accepting_cantons": "6.52",
             "percentage_yes": "36.2",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -5651,7 +5651,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "16",
+            "accepting_cantons": "69.57",
             "percentage_yes": "58.8",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -5681,7 +5681,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "23",
+            "accepting_cantons": "100.00",
             "percentage_yes": "82.1",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -5711,7 +5711,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "5.5",
+            "accepting_cantons": "23.91",
             "percentage_yes": "31.0",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -5728,7 +5728,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "8.5",
+            "accepting_cantons": "36.96",
             "percentage_yes": "48.9",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -5745,7 +5745,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "15.8",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -5762,7 +5762,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "27.0",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -5779,7 +5779,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "2",
+            "accepting_cantons": "8.70",
             "percentage_yes": "34.8",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -5796,7 +5796,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "17",
+            "accepting_cantons": "73.91",
             "percentage_yes": "56.1",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -5826,7 +5826,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "20",
+            "accepting_cantons": "86.96",
             "percentage_yes": "65.5",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -5843,7 +5843,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "16.2",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -5860,7 +5860,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "15.5",
+            "accepting_cantons": "67.39",
             "percentage_yes": "60.3",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -5877,7 +5877,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "21.1",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -5894,7 +5894,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "9",
+            "accepting_cantons": "39.13",
             "percentage_yes": "48.8",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -5911,7 +5911,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0.5",
+            "accepting_cantons": "2.17",
             "percentage_yes": "41.0",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -5928,7 +5928,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "7",
+            "accepting_cantons": "31.82",
             "percentage_yes": "48.3",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -5958,7 +5958,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "36.3",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -5988,7 +5988,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "20.6",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -6005,7 +6005,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "1.5",
+            "accepting_cantons": "6.82",
             "percentage_yes": "39.0",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -6022,7 +6022,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "38.7",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -6039,7 +6039,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "2.5",
+            "accepting_cantons": "11.36",
             "percentage_yes": "44.4",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -6069,7 +6069,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0.5",
+            "accepting_cantons": "2.27",
             "percentage_yes": "42.2",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -6086,7 +6086,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "33.8",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -6103,7 +6103,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "29.5",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -6120,7 +6120,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "22",
+            "accepting_cantons": "95.65",
             "percentage_yes": "77.6",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -6137,7 +6137,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "22.0",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -6154,7 +6154,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "3.5",
+            "accepting_cantons": "15.91",
             "percentage_yes": "42.2",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -6171,7 +6171,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "21.9",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -6188,7 +6188,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "34.2",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -6218,7 +6218,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "24.3",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -6261,7 +6261,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "32.4",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -6291,7 +6291,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "28.9",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -6308,7 +6308,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "7",
+            "accepting_cantons": "31.82",
             "percentage_yes": "49.7",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -6338,7 +6338,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "26.7",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -6368,7 +6368,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "15.6",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -6398,7 +6398,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "7",
+            "accepting_cantons": "31.82",
             "percentage_yes": "46.0",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -6428,7 +6428,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "8",
+            "accepting_cantons": "36.36",
             "percentage_yes": "48.9",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -6471,7 +6471,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "23.4",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -6488,7 +6488,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "1",
+            "accepting_cantons": "4.55",
             "percentage_yes": "32.7",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -6557,7 +6557,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "4.5",
+            "accepting_cantons": "20.45",
             "percentage_yes": "37.8",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -6587,7 +6587,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "4",
+            "accepting_cantons": "18.18",
             "percentage_yes": "34.8",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -6604,7 +6604,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "29.4",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -6673,7 +6673,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "21",
+            "accepting_cantons": "95.45",
             "percentage_yes": "85.0",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -6716,7 +6716,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0.5",
+            "accepting_cantons": "2.27",
             "percentage_yes": "35.0",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -6746,7 +6746,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "25.9",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -6789,7 +6789,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "7",
+            "accepting_cantons": "31.82",
             "percentage_yes": "50.2",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -6819,7 +6819,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "9",
+            "accepting_cantons": "40.91",
             "percentage_yes": "45.5",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -6836,7 +6836,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "2.5",
+            "accepting_cantons": "11.36",
             "percentage_yes": "36.9",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -6853,7 +6853,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "1",
+            "accepting_cantons": "4.55",
             "percentage_yes": "31.2",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -6870,7 +6870,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "4",
+            "accepting_cantons": "18.18",
             "percentage_yes": "43.7",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -6887,7 +6887,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "19.0",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -6904,7 +6904,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "12.4",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -6921,7 +6921,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "32.6",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -6951,7 +6951,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "12.5",
+            "accepting_cantons": "56.82",
             "percentage_yes": "50.7",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -6968,7 +6968,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "31.2",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -6985,7 +6985,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "27.0",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -7002,7 +7002,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "19.2",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -7032,7 +7032,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "21.5",
+            "accepting_cantons": "97.73",
             "percentage_yes": "76.3",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -7049,7 +7049,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0.5",
+            "accepting_cantons": "2.27",
             "percentage_yes": "34.9",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -7066,7 +7066,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "32.4",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -7083,7 +7083,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "1",
+            "accepting_cantons": "4.55",
             "percentage_yes": "33.7",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -7113,7 +7113,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "21",
+            "accepting_cantons": "95.45",
             "percentage_yes": "69.1",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -7130,7 +7130,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "8.5",
+            "accepting_cantons": "38.64",
             "percentage_yes": "40.2",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -7160,7 +7160,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "11.5",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -7177,7 +7177,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "15.2",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -7207,7 +7207,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "28.9",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -7276,7 +7276,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "5",
+            "accepting_cantons": "22.73",
             "percentage_yes": "42.8",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -7293,7 +7293,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "1",
+            "accepting_cantons": "4.55",
             "percentage_yes": "31.3",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -7323,7 +7323,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "3",
+            "accepting_cantons": "13.64",
             "percentage_yes": "27.7",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -7379,7 +7379,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "17",
+            "accepting_cantons": "77.27",
             "percentage_yes": "70.2",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -7396,7 +7396,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "3",
+            "accepting_cantons": "13.64",
             "percentage_yes": "37.2",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -7413,7 +7413,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "14.5",
+            "accepting_cantons": "65.91",
             "percentage_yes": "51.9",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -7430,7 +7430,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "2.7",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -7460,7 +7460,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0.5",
+            "accepting_cantons": "2.27",
             "percentage_yes": "26.8",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -7477,7 +7477,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0.5",
+            "accepting_cantons": "2.27",
             "percentage_yes": "32.7",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -7494,7 +7494,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "13.0",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -7511,7 +7511,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "5",
+            "accepting_cantons": "22.73",
             "percentage_yes": "38.4",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -7528,7 +7528,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "38.1",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -7545,7 +7545,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "6",
+            "accepting_cantons": "27.27",
             "percentage_yes": "42.0",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -7562,7 +7562,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "11.0",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -7579,7 +7579,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "7.5",
+            "accepting_cantons": "34.09",
             "percentage_yes": "45.9",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -7596,7 +7596,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "3",
+            "accepting_cantons": "13.64",
             "percentage_yes": "33.6",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -7613,7 +7613,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "14",
+            "accepting_cantons": "63.64",
             "percentage_yes": "55.3",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -7630,7 +7630,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "19.5",
+            "accepting_cantons": "88.64",
             "percentage_yes": "66.8",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -7647,7 +7647,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "20",
+            "accepting_cantons": "90.91",
             "percentage_yes": "71.4",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -7664,7 +7664,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "12",
+            "accepting_cantons": "54.55",
             "percentage_yes": "47.5",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -7681,7 +7681,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "20",
+            "accepting_cantons": "90.91",
             "percentage_yes": "63.5",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -7698,7 +7698,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "21.5",
+            "accepting_cantons": "97.73",
             "percentage_yes": "84.4",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -7715,7 +7715,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "4",
+            "accepting_cantons": "18.18",
             "percentage_yes": "24.4",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -7732,7 +7732,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "8",
+            "accepting_cantons": "36.36",
             "percentage_yes": "35.0",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -7749,7 +7749,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "10.5",
+            "accepting_cantons": "47.73",
             "percentage_yes": "40.9",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -7779,7 +7779,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "8.5",
+            "accepting_cantons": "38.64",
             "percentage_yes": "29.3",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -7796,7 +7796,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "0",
+            "accepting_cantons": "0.00",
             "percentage_yes": "19.8",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
@@ -7813,7 +7813,7 @@
         },
         "py/object": "bp.entity.ballot.DoubleMajorityBallot",
         "result": {
-            "accepting_cantons": "11.5",
+            "accepting_cantons": "52.27",
             "percentage_yes": "60.1",
             "py/object": "bp.entity.result.DoubleMajorityBallotResult"
         },
