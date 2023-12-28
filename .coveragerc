@@ -1,5 +1,6 @@
 [run]
 branch = True
 omit =
-    src/python/bp/augment/chat.py
+    src/python/bp/augment/augmenter.py
+    src/python/bp/augment/openai.py
     src/python/bp/data/collector.py

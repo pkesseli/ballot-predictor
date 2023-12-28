@@ -14,7 +14,7 @@ class BillAugmenter:
     """Helper class to augment ballot result data.
     """
 
-    def __init__(self, chat: Chat, generator: Generator):
+    def __init__(self, chat: Chat, generator: Generator, multiplier: int):
         """Initialses ballot result augmenter.
 
         Args:
@@ -22,9 +22,12 @@ class BillAugmenter:
             titles and wordings.
             generator (Generator): Random seed used to augment vote result and
             date information randomly.
+            multiplier (int): Number of paraphrasing and contradicting bills to
+            generate.
         """
         self.chat = chat
         self.generator = generator
+        self.multiplier = multiplier
 
     def paraphrase_and_contradict(self, ballots: List[DoubleMajorityBallot]) -> List[DoubleMajorityBallot]:
         """Generates n new ballots for each ballot in ballots, with paraphrased
@@ -47,7 +50,7 @@ class BillAugmenter:
 }}
 ```
 
-Generiere für 9 unterschiedliche Initiativen mit derselben Struktur und derselben Bedeutung, aber anders formuliert. Verändere keine Absatz- oder Paragraphennummern. Die Ausgabe soll nur ein generiertes JSON-Array mit den Initiativen beinhalten, keinen weiteren Text.""")
+Generiere für {self.multiplier - 1} unterschiedliche Initiativen mit derselben Struktur und derselben Bedeutung, aber anders formuliert. Verändere keine Absatz- oder Paragraphennummern. Die Ausgabe soll nur ein generiertes JSON-Array mit den Initiativen beinhalten, keine weiteren Kommentare oder Text.""")
             prompts.append(f"""Das nachfolgende JSON-Objekt enthält eine Volksinitiative zur Anpassung der schweizerischen Bundesverfassung mit Titel und Wortlaut:
 
 ```
@@ -57,7 +60,7 @@ Generiere für 9 unterschiedliche Initiativen mit derselben Struktur und derselb
 }}
 ```
 
-Generiere für 10 unterschiedliche Initiativen mit derselben Struktur, welche das Gegenteil der obigen Initiative fordern. Verändere keine Absatz- oder Paragraphennummern. Die Ausgabe soll nur ein generiertes JSON-Array mit den Initiativen beinhalten, keine weiteren Kommentare oder Text.""")
+Generiere für {self.multiplier} unterschiedliche Initiativen mit derselben Struktur, welche das Gegenteil der obigen Initiative fordern. Der Text darf signifikant vom Original abweichen, aber verändere keine Absatz- oder Paragraphennummern. Die Ausgabe soll nur ein generiertes JSON-Array mit den Initiativen beinhalten, keine weiteren Kommentare oder Text.""")
 
         responses: List[str] = self.chat.prompt(prompts)
         new_ballot: List[DoubleMajorityBallot] = []
