@@ -1,5 +1,6 @@
 from bp.augment.bill import BillAugmenter
 from bp.augment.chat import Chat
+from bp.augment.seed import DEFAULT_SEED
 from bp.entity.ballot import BallotStatus, DoubleMajorityBallot, DoubleMajorityBallotResult
 from bp.entity.bill import Bill
 
@@ -97,7 +98,7 @@ class MockChat(Chat):
 class TestBillAugmenter(unittest.TestCase):
 
     def test_paraphrase_and_contradict(self):
-        augmenter: BillAugmenter = TestBillAugmenter.__create_mock_augment()
+        augmenter: BillAugmenter = TestBillAugmenter.__create_mock_augmenter()
         augmented_ballots: List[DoubleMajorityBallot] = augmenter.paraphrase_and_contradict(
             TestBillAugmenter.__get_ballots())
         self.assertEqual(20, len(augmented_ballots))
@@ -119,22 +120,22 @@ class TestBillAugmenter(unittest.TestCase):
             "Die Volksinitiative lautet:\n\nDie Bundesverfassung wird wie folgt ergänzt:\n\nArt. 25^bis (neu)\n\nDas Schlachten der Tiere ohne vorherige Betäubung vor dem Blutentzuge ist bei jeder Schlachtart und Viehgattung uneingeschränkt erlaubt.", augmented_ballots[19].bill.wording)
 
     def test_augment_vote(self):
-        augment: BillAugmenter = TestBillAugmenter.__create_mock_augment()
+        augment: BillAugmenter = TestBillAugmenter.__create_mock_augmenter()
         result: DoubleMajorityBallotResult = augment._BillAugmenter__augment_vote(
             Decimal("45.52"), Decimal("34.78"), False)
         self.assertLess(result.percentage_yes, Decimal(50.0))
         self.assertLess(result.accepting_cantons, Decimal(50.0))
 
     def test_augment_vote_flip(self):
-        augment: BillAugmenter = TestBillAugmenter.__create_mock_augment()
+        augment: BillAugmenter = TestBillAugmenter.__create_mock_augmenter()
         result: DoubleMajorityBallotResult = augment._BillAugmenter__augment_vote(
             Decimal("45.52"), Decimal("34.78"), True)
         self.assertGreaterEqual(result.percentage_yes, Decimal(50.0))
         self.assertGreaterEqual(result.accepting_cantons, Decimal(50.0))
 
     @staticmethod
-    def __create_mock_augment():
-        return BillAugmenter(MockChat(), default_rng(346615217))
+    def __create_mock_augmenter():
+        return BillAugmenter(MockChat(), default_rng(DEFAULT_SEED), 10)
 
     @staticmethod
     def __get_ballots() -> List[DoubleMajorityBallot]:
