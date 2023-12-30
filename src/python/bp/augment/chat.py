@@ -1,9 +1,15 @@
 import aiofiles
 import jsonpickle
+import re
 import os
 from abc import ABC, abstractmethod
 from hashlib import sha256
 from typing import List, Coroutine
+
+
+REMOVE_JSON_MARKUP: re.Pattern = re.compile("```json\n?(.*)```", re.DOTALL)
+"""re.Pattern: Regex pattern intended for use with re.Pattern.sub to remove
+optional JSON markup from a chat response."""
 
 
 class Chat(ABC):
@@ -23,6 +29,19 @@ class Chat(ABC):
             List[str]: Response for each query.
         """
         pass
+
+    @staticmethod
+    def remove_json_markup(response: str) -> str:
+        """Removes optional markup for JSON code in a string. ChatGPT for
+        example sometimes includes such markup.
+
+        Args:
+            response (str): Text from which to remove markup.
+
+        Returns:
+            str: JSON without any markup formatting.
+        """
+        return REMOVE_JSON_MARKUP.sub("\\1", response)
 
 
 CACHE_FILE: str = "../resources/openai/cache.json"
@@ -80,13 +99,15 @@ class CachedChat(Chat):
                 responses[index] = cached_response
             index = index + 1
 
-        new_responses: List[str] = self.chat.prompt(uncached_queries)
-        index = 0
-        for response in new_responses:
-            while responses[index] is not None:
-                index = index + 1
-            responses[index] = response
-            self.cache[queries[index]] = response
+        if len(uncached_queries) > 0:
+            new_responses: List[str] = self.chat.prompt(uncached_queries)
+            index = 0
+            for response in new_responses:
+                while responses[index] is not None:
+                    index = index + 1
+                responses[index] = response
+                self.cache[queries[index]] = response
+
         return responses
 
     def __get_cache_file_path(self) -> str:

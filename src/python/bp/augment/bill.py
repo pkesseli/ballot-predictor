@@ -39,9 +39,9 @@ class BillAugmenter:
         Returns:
             List[DoubleMajorityBallot]: Augmented list of ballots.
         """
-        prompts: List[str] = []
+        responses: List[str] = []
         for ballot in ballots:
-            prompts.append(f"""Das nachfolgende JSON-Objekt enthält eine Volksinitiative zur Anpassung der schweizerischen Bundesverfassung mit Titel und Wortlaut:
+            responses.extend(self.chat.prompt([f"""Das nachfolgende JSON-Objekt enthält eine Volksinitiative zur Anpassung der schweizerischen Bundesverfassung mit Titel und Wortlaut:
 
 ```
 {{
@@ -50,8 +50,8 @@ class BillAugmenter:
 }}
 ```
 
-Generiere für {self.multiplier - 1} unterschiedliche Initiativen mit derselben Struktur und derselben Bedeutung, aber anders formuliert. Verändere keine Absatz- oder Paragraphennummern. Die Ausgabe soll nur ein generiertes JSON-Array mit den Initiativen beinhalten, keine weiteren Kommentare oder Text.""")
-            prompts.append(f"""Das nachfolgende JSON-Objekt enthält eine Volksinitiative zur Anpassung der schweizerischen Bundesverfassung mit Titel und Wortlaut:
+Generiere {self.multiplier - 1} weitere Initiativen mit derselben Struktur. Diese neuen Initiativen sollen dieselbe inhaltliche Bedeutung haben wie das Original, aber sollen alle anders formuliert sein. Die neuen Texte dürfen signifikant vom Original abweichen, aber verändere keine Absatz- oder Paragraphennummern. Die Ausgabe soll nur ein generiertes JSON-Array mit den Initiativen beinhalten, keine weiteren Kommentare oder Text."""]))
+            responses.extend(self.chat.prompt([f"""Das nachfolgende JSON-Objekt enthält eine Volksinitiative zur Anpassung der schweizerischen Bundesverfassung mit Titel und Wortlaut:
 
 ```
 {{
@@ -60,20 +60,21 @@ Generiere für {self.multiplier - 1} unterschiedliche Initiativen mit derselben 
 }}
 ```
 
-Generiere für {self.multiplier} unterschiedliche Initiativen mit derselben Struktur, welche das Gegenteil der obigen Initiative fordern. Der Text darf signifikant vom Original abweichen, aber verändere keine Absatz- oder Paragraphennummern. Die Ausgabe soll nur ein generiertes JSON-Array mit den Initiativen beinhalten, keine weiteren Kommentare oder Text.""")
+Generiere {self.multiplier} weitere Initiativen mit derselben Struktur. Diese neuen Initiativen sollen das Gegenteil der obigen Initiative fordern. Trotz der gegenteiligen Aussage soll der Text so ansprechend wie möglich für potentielle Wähler wirken. Die neuen Texte dürfen signifikant vom Original abweichen, aber verändere keine Absatz- oder Paragraphennummern. Die Ausgabe soll nur ein generiertes JSON-Array mit den Initiativen beinhalten, keine weiteren Kommentare oder Text."""]))
 
-        responses: List[str] = self.chat.prompt(prompts)
-        new_ballot: List[DoubleMajorityBallot] = []
+        new_ballots: List[DoubleMajorityBallot] = []
         response_index: int = 0
         for response in responses:
             parsed_response: List[dict[str]] = jsonpickle.decode(response)
-            ballot: DoubleMajorityBallot = ballots[response_index]
-            new_ballot.append(ballot)
+            ballot: DoubleMajorityBallot = ballots[int(response_index / 2)]
             response_element_index: int = 0
             is_contradiction: bool = response_index % 2 == 1
+            if not is_contradiction:
+                new_ballots.append(ballot)
+
             while response_element_index < len(parsed_response):
                 new_text_and_wording: dict[str] = parsed_response[response_element_index]
-                new_ballot.append(DoubleMajorityBallot(
+                new_ballots.append(DoubleMajorityBallot(
                     Bill(
                         new_text_and_wording["title"],
                         new_text_and_wording["wording"],
@@ -88,7 +89,7 @@ Generiere für {self.multiplier} unterschiedliche Initiativen mit derselben Stru
                 response_element_index = response_element_index + 1
             response_index = response_index + 1
 
-        return new_ballot
+        return new_ballots
 
     def __augment_vote(self, percentage_yes: Decimal, accepting_cantons: Decimal, flip_result: bool) -> DoubleMajorityBallotResult:
         """Generates a new vote result randomly, while either maintaining the

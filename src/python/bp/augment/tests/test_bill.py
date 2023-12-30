@@ -12,8 +12,14 @@ from typing import Dict, List
 
 
 class MockChat(Chat):
+    
+    def __init__(self):
+        self.invocation_index = 0
+
     def prompt(self, _: List[str]) -> List[str]:
-        return [
+        if self.invocation_index == 0:
+            self.invocation_index = self.invocation_index + 1
+            return [
             """
 [
   {
@@ -51,7 +57,11 @@ class MockChat(Chat):
   {
     "title": "für die Betäubung vor dem Töten",
     "wording": "Die Volksinitiative lautet:\n\nDie Bundesverfassung wird wie folgt ergänzt:\n\nArt. 25^bis (neu)\n\nBevor Tiere getötet werden, ist eine vorherige Betäubung vor dem Blutentzug zwingend vorgeschrieben, und zwar für jede Schlachtart und Viehgattung."
-  },
+  }
+]"""]
+        return [
+            """
+[
   {
     "title": "gegen ein Verbot des Schlachtens ohne vorherige Betäubung",
     "wording": "Die Volksinitiative lautet:\n\nDie Bundesverfassung wird wie folgt ergänzt:\n\nArt. 25^bis (neu)\n\nDas Schlachten der Tiere ohne vorherige Betäubung vor dem Blutentzuge ist bei jeder Schlachtart und Viehgattung ausnahmslos erlaubt."

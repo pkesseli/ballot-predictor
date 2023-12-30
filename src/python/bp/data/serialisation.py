@@ -1,4 +1,4 @@
-from bp.entity.ballot import BallotStatus
+from bp.entity.ballot import DoubleMajorityBallotResult, BallotStatus
 
 from datetime import datetime
 from decimal import Decimal
@@ -13,6 +13,27 @@ class DatetimeHandler(BaseHandler):
 
     def restore(self, obj: str) -> datetime:
         return datetime.fromisoformat(obj)
+
+
+class DoubleMajorityBallotResultHandler(BaseHandler):
+    """jsonpickle handler to serialise DoubleMajorityBallotResult instances.
+    This explicit handler is necessary since the default serialisation
+    deserialises Decimal instances as str. This handler instantiates them as
+    Decimals.
+    """
+
+    def flatten(self, obj: DoubleMajorityBallotResult, _) -> dict[str, str]:
+        return {
+            "accepting_cantons": str(obj.accepting_cantons),
+            "percentage_yes": str(obj.percentage_yes),
+            "py/object": "bp.entity.result.DoubleMajorityBallotResult"
+        }
+
+    def restore(self, obj: dict[str, str]) -> DoubleMajorityBallotResult:
+        return DoubleMajorityBallotResult(
+            Decimal(obj["percentage_yes"]),
+            Decimal(obj["accepting_cantons"])
+        )
 
 
 class BallotStatusHandler(BaseHandler):

@@ -20,6 +20,22 @@ class TestChat(unittest.TestCase):
         chat = MockChat()
         self.assertIsNone(chat.prompt(None))
 
+    def test_remove_json_markup(self):
+        self.assertEqual("""[
+  {
+    \"title\": \"Title\",
+    \"wording\": \"Wording\"
+  }
+]
+""", Chat.remove_json_markup("""```json
+[
+  {
+    \"title\": \"Title\",
+    \"wording\": \"Wording\"
+  }
+]
+```"""))
+
 
 class CountingEchoChat(Chat):
 

@@ -1,7 +1,8 @@
 from bp.augment.chat import Chat
 
 from openai import OpenAI
-from openai.types import Completion
+from openai.types.chat.completion_create_params import ResponseFormat
+from openai.types.chat import ChatCompletion, ChatCompletionUserMessageParam
 from typing import List
 
 
@@ -10,14 +11,12 @@ class ChatGpt(Chat):
     """
 
     def prompt(self, prompts: List[str]) -> List[str]:
+        messages: List[ChatCompletionUserMessageParam] = [
+            ChatCompletionUserMessageParam(content=prompt, role="user") for prompt in prompts]
         client = OpenAI()
-        response: Completion = client.completions.create(
-            model="gpt-3.5-turbo",
-            prompt=prompts,
-            max_tokens=1000
+        response: ChatCompletion = client.chat.completions.create(
+            messages=messages,
+            model="gpt-3.5-turbo"
         )
 
-        responses: List[str] = [""] * len(prompts)
-        for choice in response.choices:
-            responses[choice.index] = choice.text
-        return responses
+        return [Chat.remove_json_markup(choice.message.content) for choice in response.choices]
