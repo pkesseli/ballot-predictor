@@ -1,6 +1,7 @@
-from bp.data.serialisation import BallotStatusHandler, DatetimeHandler, DecimalHandler
-from bp.entity.ballot import BallotStatus
+from bp.data.serialisation import BallotStatusHandler, DatetimeHandler, DecimalHandler, DoubleMajorityBallotResultHandler
+from bp.entity.ballot import BallotStatus, DoubleMajorityBallotResult
 
+import jsonpickle
 import unittest
 from datetime import datetime
 from decimal import Decimal
@@ -46,3 +47,23 @@ class TestDecimalHandler(unittest.TestCase):
 
     def test_restore(self):
         self.assertEqual(Decimal("4.3"), DecimalHandler(None).restore("4.3"))
+
+
+class TestDoubleMajorityBallotResultHandler(unittest.TestCase):
+
+    def test_encode(self):
+        jsonpickle.handlers.registry.register(
+            DoubleMajorityBallotResult, DoubleMajorityBallotResultHandler)
+        self.assertEqual("""{"accepting_cantons": "5.3", "percentage_yes": "10.7", "py/object": "bp.entity.result.DoubleMajorityBallotResult"}""",
+                         jsonpickle.encode(DoubleMajorityBallotResult(
+                             Decimal("10.7"),
+                             Decimal("5.3")
+                         )))
+
+    def test_decode(self):
+        jsonpickle.handlers.registry.register(
+            DoubleMajorityBallotResult, DoubleMajorityBallotResultHandler)
+        result: DoubleMajorityBallotResult = jsonpickle.decode(
+            """{"accepting_cantons": "5.3", "percentage_yes": "10.7", "py/object": "bp.entity.result.DoubleMajorityBallotResult"}""")
+        self.assertEqual(Decimal("10.7"), result.percentage_yes)
+        self.assertEqual(Decimal("5.3"), result.accepting_cantons)
