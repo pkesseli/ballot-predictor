@@ -43,10 +43,15 @@ async def main():
     async with CachedChat(chat) as cached_chat:
         bill_augmenter = BillAugmenter(
             cached_chat, default_rng(DEFAULT_SEED), 5)
+        count: int = 0
         for ballot in ballots_with_result:
-            augmented_ballots.extend(
-                bill_augmenter.paraphrase_and_contradict([ballot]))
-            break
+            if count == 0:
+                augmented_ballots.extend(
+                    bill_augmenter.paraphrase_and_contradict([ballot]))
+            else:
+                augmented_ballots.append(ballot)
+
+            count = count + 1
 
     serialised = jsonpickle.encode(augmented_ballots)
     async with aiofiles.open("bp/resources/bk.admin.ch/augmented-initiatives.json", "w") as file:
