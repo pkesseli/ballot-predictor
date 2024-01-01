@@ -3,7 +3,7 @@ from bp.augment.chat import CachedChat
 from bp.augment.openai import ChatGpt
 from bp.augment.seed import DEFAULT_SEED
 from bp.data.serialisation import Serialisation
-from bp.entity.ballot import DoubleMajorityBallot
+from bp.entity.ballot import BallotStatus, DoubleMajorityBallot
 from dotenv import load_dotenv
 
 import asyncio
@@ -22,22 +22,19 @@ async def main():
 
     ballots: List[DoubleMajorityBallot] = await Serialisation.load_initiatives()
     ballots_with_result: List[DoubleMajorityBallot] = [
-        ballot for ballot in ballots if ballot.result is not None]
+        ballot for ballot in ballots if ballot.status is BallotStatus.COMPLETED]
 
     augmented_ballots: List[DoubleMajorityBallot] = []
     chat = ChatGpt()
     async with CachedChat(chat) as cached_chat:
         bill_augmenter = BillAugmenter(
             cached_chat, default_rng(DEFAULT_SEED), 5)
-        count: int = 0
         for ballot in ballots_with_result:
-            if count == 0:
+            if "Keine Massentierhaltung in der Schweiz (Massentierhaltungsinitiative)" == ballot.bill.title:
                 augmented_ballots.extend(
                     bill_augmenter.paraphrase_and_contradict([ballot]))
             else:
                 augmented_ballots.append(ballot)
-
-            count = count + 1
 
     await Serialisation.write_augmented_initiatives(augmented_ballots)
 
