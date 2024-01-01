@@ -2,17 +2,20 @@ from bp.entity.ballot import Bill, DoubleMajorityBallot, DoubleMajorityBallotRes
 
 import aiofiles
 import jsonpickle
+import os
 from datetime import datetime
 from decimal import Decimal
+from jsonpickle import Pickler, Unpickler
 from jsonpickle.handlers import BaseHandler
+from jsonpickle.tags import OBJECT
 from typing import Any, List
 
 
-INITIATIVES: str = "bp/resources/bk.admin.ch/initiatives.json"
+INITIATIVES: str = "../resources/bk.admin.ch/initiatives.json"
 """str: Relative path from python source root to initiatives JSON file."""
 
 
-AUGMENTED_INITIATIVES: str = "bp/resources/bk.admin.ch/augmented-initiatives.json"
+AUGMENTED_INITIATIVES: str = "../resources/bk.admin.ch/augmented-initiatives.json"
 """str: Relative path from python source root to augmented initiatives JSON
 file."""
 
@@ -86,6 +89,25 @@ class Serialisation:
         async with aiofiles.open(file_path, "w") as file:
             await file.write(serialised)
 
+    @staticmethod
+    def __to_module_path(file_path: str) -> str:
+        """Takes a relative path and applies it relative to the module
+        location, producing an absolute path.
+
+        Args:
+            file_path (str): Relative path to turn into absolute one.
+
+        Returns:
+            str: Absolute path to file.
+        """
+        module_location: str = os.path.dirname(__file__)
+        return os.path.join(module_location, file_path)
+
+
+INITIATIVES: str = Serialisation._Serialisation__to_module_path(INITIATIVES)
+AUGMENTED_INITIATIVES: str = Serialisation._Serialisation__to_module_path(
+    AUGMENTED_INITIATIVES)
+
 
 class BillHandler(BaseHandler):
     """jsonpickle handler to serialise Bill instances. This explicit handler is
@@ -98,15 +120,14 @@ class BillHandler(BaseHandler):
             "title": str(obj.title),
             "wording": str(obj.wording),
             "date": DatetimeHandler(self.context).flatten(obj.date, _),
-            "py/object": "bp.entity.bill.Bill"
+            OBJECT: "bp.entity.bill.Bill"
         }
 
     def restore(self, obj: dict[str, str]) -> Bill:
         return Bill(
             obj["title"],
             obj["wording"],
-            DatetimeHandler(self.context).restore(obj["date"])
-        )
+            DatetimeHandler(self.context).restore(obj["date"]))
 
 
 class DatetimeHandler(BaseHandler):
@@ -127,19 +148,20 @@ class DoubleMajorityBallotHandler(BaseHandler):
     """
 
     def flatten(self, obj: DoubleMajorityBallot, _) -> dict[str, Any]:
+        pickler: Pickler = self.context
         return {
-            "bill": BillHandler(self.context).flatten(obj.bill, _),
+            "bill": pickler.flatten(obj.bill, False),
             "status": BallotStatusHandler(self.context).flatten(obj.status, _),
-            "result": DoubleMajorityBallotResultHandler(self.context).flatten(obj.result, _),
-            "py/object": "bp.entity.ballot.DoubleMajorityBallot"
+            "result": pickler.flatten(obj.result, False),
+            OBJECT: "bp.entity.ballot.DoubleMajorityBallot"
         }
 
     def restore(self, obj: dict[str, Any]) -> DoubleMajorityBallot:
+        unpickler: Unpickler = self.context
         return DoubleMajorityBallot(
-            BillHandler(self.context).restore(obj["bill"]),
+            unpickler.restore(obj["bill"], False),
             BallotStatusHandler(self.context).restore(obj["status"]),
-            DoubleMajorityBallotResultHandler(
-                self.context).restore(obj["result"])
+            unpickler.restore(obj["result"], False)
         )
 
 
@@ -150,7 +172,7 @@ class DoubleMajorityBallotResultHandler(BaseHandler):
     Decimals.
     """
 
-    def flatten(self, obj: DoubleMajorityBallotResult, _) -> dict[str, str]:
+    def flatten(self, obj: DoubleMajorityBallotResult, data) -> dict[str, str]:
         return {
             "accepting_cantons": str(obj.accepting_cantons),
             "percentage_yes": str(obj.percentage_yes),

@@ -10,12 +10,27 @@ from decimal import Decimal
 from typing import List
 
 
+TEST_TIMESTAMP: datetime = datetime(2024, 1, 1)
+
+
 TEST_BALLOTS: List[DoubleMajorityBallot] = [
     DoubleMajorityBallot(
         Bill(
             "Title",
             "The wording.",
-            datetime(2024, 1, 1)
+            TEST_TIMESTAMP
+        ),
+        BallotStatus.COMPLETED,
+        DoubleMajorityBallotResult(
+            Decimal("90.1"),
+            Decimal("14")
+        )
+    ),
+    DoubleMajorityBallot(
+        Bill(
+            "Title",
+            "The wording.",
+            TEST_TIMESTAMP
         ),
         BallotStatus.COMPLETED,
         DoubleMajorityBallotResult(
@@ -45,34 +60,42 @@ class TestSerialisation(unittest.IsolatedAsyncioTestCase):
     async def test_initiatives(self):
         await Serialisation.write_initiatives(TEST_BALLOTS)
         deserialised: List[DoubleMajorityBallot] = await Serialisation.load_initiatives()
-        self.assertEqual(1, len(deserialised))
+        self.assertEqual(2, len(deserialised))
+        self.assertNotEqual(deserialised[0], deserialised[1])
 
         expected: DoubleMajorityBallot = TEST_BALLOTS[0]
-        actual: DoubleMajorityBallot = deserialised[0]
-        self.assertEqual(expected.bill.title, actual.bill.title)
-        self.assertEqual(expected.bill.wording, actual.bill.wording)
-        self.assertEqual(expected.bill.date, actual.bill.date)
-        self.assertEqual(expected.status, actual.status)
-        self.assertEqual(expected.result.percentage_yes,
-                         actual.result.percentage_yes)
-        self.assertEqual(expected.result.accepting_cantons,
-                         actual.result.accepting_cantons)
+        index: int = 0
+        while index < len(deserialised):
+            actual: DoubleMajorityBallot = deserialised[index]
+            self.assertEqual(expected.bill.title, actual.bill.title)
+            self.assertEqual(expected.bill.wording, actual.bill.wording)
+            self.assertEqual(expected.bill.date, actual.bill.date)
+            self.assertEqual(expected.status, actual.status)
+            self.assertEqual(expected.result.percentage_yes,
+                             actual.result.percentage_yes)
+            self.assertEqual(expected.result.accepting_cantons,
+                             actual.result.accepting_cantons)
+            index = index + 1
 
     async def test_augmented_initiatives(self):
         await Serialisation.write_augmented_initiatives(TEST_BALLOTS)
         deserialised: List[DoubleMajorityBallot] = await Serialisation.load_augmented_initiatives()
-        self.assertEqual(1, len(deserialised))
+        self.assertEqual(2, len(deserialised))
+        self.assertNotEqual(deserialised[0], deserialised[1])
 
         expected: DoubleMajorityBallot = TEST_BALLOTS[0]
-        actual: DoubleMajorityBallot = deserialised[0]
-        self.assertEqual(expected.bill.title, actual.bill.title)
-        self.assertEqual(expected.bill.wording, actual.bill.wording)
-        self.assertEqual(expected.bill.date, actual.bill.date)
-        self.assertEqual(expected.status, actual.status)
-        self.assertEqual(expected.result.percentage_yes,
-                         actual.result.percentage_yes)
-        self.assertEqual(expected.result.accepting_cantons,
-                         actual.result.accepting_cantons)
+        index: int = 0
+        while index < len(deserialised):
+            actual: DoubleMajorityBallot = deserialised[index]
+            self.assertEqual(expected.bill.title, actual.bill.title)
+            self.assertEqual(expected.bill.wording, actual.bill.wording)
+            self.assertEqual(expected.bill.date, actual.bill.date)
+            self.assertEqual(expected.status, actual.status)
+            self.assertEqual(expected.result.percentage_yes,
+                             actual.result.percentage_yes)
+            self.assertEqual(expected.result.accepting_cantons,
+                             actual.result.accepting_cantons)
+            index = index + 1
 
 
 class TestDatetimeHandler(unittest.TestCase):
