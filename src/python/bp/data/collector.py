@@ -1,10 +1,7 @@
 from bp.data.chronology import Chronology
-from bp.data.serialisation import BallotStatusHandler, DatetimeHandler, DecimalHandler
-from bp.entity.ballot import BallotStatus, DoubleMajorityBallot
+from bp.data.serialisation import Serialisation
+from bp.entity.ballot import DoubleMajorityBallot
 
-import jsonpickle
-from datetime import datetime
-from decimal import Decimal
 from typing import List
 
 
@@ -14,10 +11,6 @@ def main():
     test coverage check, since this script is only executed manually during
     experimental and training preparations.
     """
-    jsonpickle.handlers.registry.register(BallotStatus, BallotStatusHandler)
-    jsonpickle.handlers.registry.register(datetime, DatetimeHandler)
-    jsonpickle.handlers.registry.register(Decimal, DecimalHandler)
-    jsonpickle.set_encoder_options("json", sort_keys=True, indent=4)
     initiativeUrls: List[str] = Chronology.get_initiatives()
     initiatives: List[DoubleMajorityBallot] = []
 
@@ -30,10 +23,7 @@ def main():
             billDetailsUrl)
         initiatives.append(ballot)
 
-    serialised = jsonpickle.encode(initiatives)
-    serialised += "\n"
-    with open("bp/resources/bk.admin.ch/initiatives.json", "w+") as file:
-        file.write(serialised)
+    Serialisation.write_initiatives(initiatives)
 
 
 if __name__ == "__main__":
