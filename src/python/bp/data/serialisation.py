@@ -44,7 +44,7 @@ class Serialisation:
         await Serialisation.__encode_and_write(ballots, AUGMENTED_INITIATIVES)
 
     @staticmethod
-    async def load_initiatives() -> List[DoubleMajorityBallotResult]:
+    async def load_initiatives() -> List[DoubleMajorityBallot]:
         """Deserialise persisted initiatives.
 
         Returns:
@@ -53,7 +53,7 @@ class Serialisation:
         return await Serialisation.__decode_and_read(INITIATIVES)
 
     @staticmethod
-    async def load_augmented_initiatives() -> List[DoubleMajorityBallotResult]:
+    async def load_augmented_initiatives() -> List[DoubleMajorityBallot]:
         """Deserialise persisted augmented initiatives.
 
         Returns:
