@@ -1,15 +1,17 @@
 from bp.entity.ballot import DoubleMajorityBallotResult
 from bp.entity.bill import Bill
+from bp.train.batch import Batch
 
 import tensorflow as tf
 from keras import Model
 from keras.layers import Dense, Input, ReLU
 from keras.losses import MeanSquaredError
 from keras.optimizers import Adam
+from numpy import split
 from tensorflow import expand_dims, Tensor
 from transformers import BertTokenizer, TFBertModel
 from transformers.modeling_tf_outputs import TFBaseModelOutputWithPoolingAndCrossAttentions
-from typing import List, Tuple
+from typing import List, Tuple, TypeVar
 
 
 HUGGINGFACE_MODEL: str = "bert-base-multilingual-cased"
@@ -44,6 +46,10 @@ LABEL_MAX_VALUE: float = 100.0
 """float: Maximum value in our output layer's activation function. We use this
 to constrain the output of our output layer between [0.0, 100.0], modelling a
 percentage."""
+
+
+BATCH_SIZE: int = 8
+"""int: Batch size used for training."""
 
 
 class VoteResultPredictionModel:
@@ -91,11 +97,11 @@ class VoteResultPredictionModel:
         """
         formatted_bills: List[str] = [
             f"{bill.title}\n\n{bill.wording}" for bill in bills]
-        tokenized_bills: Tensor = self.tokenizer(
+        features: Tensor = self.tokenizer(
             formatted_bills, padding=True, truncation=True, return_tensors=TENSOR_FLOW_FORMAT)[INPUT_IDS]
-        tokenized_bills_with_batch_dimension: Tensor = expand_dims(
-            tokenized_bills, 0)
-        return tokenized_bills_with_batch_dimension
+        features_with_batch_dimension: Tensor = Batch.split_into_batches(
+            features, BATCH_SIZE)
+        return features_with_batch_dimension
 
     def create_double_majority_labels(self, results: List[DoubleMajorityBallotResult]) -> Tensor:
         """Converts results to labels in the form of tuples containing the
@@ -109,10 +115,11 @@ class VoteResultPredictionModel:
         Returns:
             Tensor: Label tensor suitable for use with TFBertModel.
         """
-        features: List[Tuple[float, float]] = [(float(result.percentage_yes), float(
+        labels: List[Tuple[float, float]] = [(float(result.percentage_yes), float(
             result.accepting_cantons)) for result in results]
-        features_with_batch_dimension: Tensor = expand_dims(features, 0)
-        return features_with_batch_dimension
+        labels_with_batch_dimension: Tensor = Batch.split_into_batches(
+            labels, BATCH_SIZE)
+        return labels_with_batch_dimension
 
     def train(self, dataset: tf.data.Dataset) -> None:
         """Trains self.model with dataset.
@@ -121,4 +128,4 @@ class VoteResultPredictionModel:
             dataset (tf.data.Dataset): Training data to use.
         """
         self.model.compile(optimizer=Adam(), loss=MeanSquaredError())
-        self.model.fit(dataset, epochs=3)
+        self.model.fit(dataset, epochs=3, batch_size=BATCH_SIZE)
