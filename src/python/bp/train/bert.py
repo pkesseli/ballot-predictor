@@ -2,8 +2,10 @@ from bp.entity.ballot import DoubleMajorityBallotResult
 from bp.entity.bill import Bill
 from bp.train.batch import Batch
 
+import os
 import tensorflow as tf
 from keras import Model
+from keras.models import load_model
 from keras.layers import Dense, Input, ReLU
 from keras.losses import MeanSquaredError
 from keras.optimizers import Adam
@@ -11,13 +13,17 @@ from numpy import split
 from tensorflow import expand_dims, Tensor
 from transformers import BertTokenizer, TFBertModel
 from transformers.modeling_tf_outputs import TFBaseModelOutputWithPoolingAndCrossAttentions
-from typing import List, Tuple, TypeVar
+from typing import List, Tuple
 
 
 HUGGINGFACE_MODEL: str = "bert-base-multilingual-cased"
 """str: Name of the multilingual BERT base model in HuggingFace repository.
 This model is automatically downloaded if not already cached in the local cache
 maintained by HuggingFace's transformers library."""
+
+
+VOTE_RESULT_PREDICTION_MODEL: str = "vote-result-prediction/model"
+"""str: """
 
 
 INPUT_IDS: str = "input_ids"
@@ -60,21 +66,38 @@ class VoteResultPredictionModel:
     """
 
     def __init__(self) -> None:
-        """Initialises a multilingual BERT base model, with an input layer
-        suitable for text data tokenized by BertTokenizer and currently a
-        single additional output layer matching the features for a double
-        majority vote result."""
+        """Loads the last persisted multilingual ballot vote result prediction
+        model from get_persisted_model_file, if it exists. Otherwise a new,
+        untrained model is created using __create_model.
+        """
         self.tokenizer = BertTokenizer.from_pretrained(HUGGINGFACE_MODEL)
+
+        persisted_model: str = VoteResultPredictionModel.get_persisted_model_file()
+        if os.path.isfile(persisted_model):
+            self.model = load_model(persisted_model)
+        else:
+            self.model = self.__create_model()
+
+    def __create_model(self) -> Model:
+        """Creates a new, untrained model from a HuggingFace multilingual BERT
+        base model. We extend this base model with an input layer suitable for
+        text data tokenized by BertTokenizer and currently a single additional
+        output layer matching the features for a double majority vote result.
+        """
         bert_base_model: TFBertModel = TFBertModel.from_pretrained(
             HUGGINGFACE_MODEL)
         input_layer = Input(
             shape=(self.tokenizer.model_max_length,), dtype=tf.int32, name=INPUT_IDS)
-        bert_layers: TFBaseModelOutputWithPoolingAndCrossAttentions = bert_base_model(
+        bert_layers: TFBaseModelOutputWithPoolingAndCrossAttentions = bert_base_model.bert(
             input_layer)
-
-        regression_head = Dense(NUMBER_OF_LABELS, activation=ReLU(
-            LABEL_MAX_VALUE))(bert_layers[POOLED_OUTPUT_LAYER_INDEX])
-        self.model = Model(inputs=input_layer, outputs=regression_head)
+        regression_layer = Dense(
+            NUMBER_OF_LABELS, activation=ReLU(LABEL_MAX_VALUE))
+        regression_layer_on_top_of_bert = regression_layer(
+            bert_layers[POOLED_OUTPUT_LAYER_INDEX])
+        model = Model(inputs=input_layer,
+                      outputs=regression_layer_on_top_of_bert)
+        model.compile(optimizer=Adam(), loss=MeanSquaredError())
+        return model
 
     def create_bill_features(self, bills: List[Bill]) -> Tensor:
         """Converts bills to a tensor containing the tokenized bill title and
@@ -121,11 +144,22 @@ class VoteResultPredictionModel:
             labels, BATCH_SIZE)
         return labels_with_batch_dimension
 
-    def train(self, dataset: tf.data.Dataset) -> None:
+    def train(self, dataset: tf.data.Dataset, epochs: int) -> None:
         """Trains self.model with dataset.
 
         Args:
             dataset (tf.data.Dataset): Training data to use.
         """
-        self.model.compile(optimizer=Adam(), loss=MeanSquaredError())
-        self.model.fit(dataset, epochs=3, batch_size=BATCH_SIZE)
+        self.model.fit(dataset, epochs=epochs, batch_size=BATCH_SIZE)
+
+    def save(self) -> None:
+        """Saves the current state of the moodel to get_persisted_model_file.
+        """
+        self.model.save(
+            VoteResultPredictionModel.get_persisted_model_file(), save_format="keras")
+
+    @staticmethod
+    def get_persisted_model_file() -> None:
+        """Provides the absolute path to the file persisting this model."""
+        module_location: str = os.path.dirname(__file__)
+        return os.path.join(module_location, "../resources/tensorflow/vote-result-prediction.keras")
