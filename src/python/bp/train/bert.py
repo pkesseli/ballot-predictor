@@ -1,6 +1,5 @@
 from bp.entity.ballot import DoubleMajorityBallotResult
 from bp.entity.bill import Bill
-from bp.train.batch import Batch
 
 import os
 import tensorflow as tf
@@ -9,9 +8,8 @@ from keras.models import load_model
 from keras.layers import Dense, Input, ReLU
 from keras.losses import MeanSquaredError
 from keras.optimizers import Adam
-from numpy import split
-from tensorflow import expand_dims, Tensor
-from transformers import BertTokenizer, TFBertModel
+from tensorflow import Tensor
+from transformers import BertTokenizer, TFBertForSequenceClassification
 from transformers.modeling_tf_outputs import TFBaseModelOutputWithPoolingAndCrossAttentions
 from typing import List, Tuple
 
@@ -84,10 +82,11 @@ class VoteResultPredictionModel:
         text data tokenized by BertTokenizer and currently a single additional
         output layer matching the features for a double majority vote result.
         """
-        bert_base_model: TFBertModel = TFBertModel.from_pretrained(
+        bert_base_model: TFBertForSequenceClassification = TFBertForSequenceClassification.from_pretrained(
             HUGGINGFACE_MODEL)
         input_layer = Input(
-            shape=(self.tokenizer.model_max_length,), dtype=tf.int32, name=INPUT_IDS)
+            # TODO: Determine shape automatically
+            shape=(53,), dtype=tf.int32)
         bert_layers: TFBaseModelOutputWithPoolingAndCrossAttentions = bert_base_model.bert(
             input_layer)
         regression_layer = Dense(
@@ -116,44 +115,41 @@ class VoteResultPredictionModel:
             bills (List[Bill]): Bills to tokenize and convert to features.
 
         Returns:
-            Tensor: Features suitable for use with TFBertModel.
+            Tensor: Features suitable for use with
+            TFBertForSequenceClassification.
         """
-        formatted_bills: List[str] = [
-            f"{bill.title}\n\n{bill.wording}" for bill in bills]
-        features: Tensor = self.tokenizer(
-            formatted_bills, padding=True, truncation=True, return_tensors=TENSOR_FLOW_FORMAT)[INPUT_IDS]
-        features_with_batch_dimension: Tensor = Batch.split_into_batches(
-            features, BATCH_SIZE)
-        return features_with_batch_dimension
+        formatted_bills: List[str] = [bill.title for bill in bills]
+        tokenized_bills: Tensor = self.tokenizer(
+            formatted_bills, padding=True, truncation=True, return_tensors=TENSOR_FLOW_FORMAT)
+        return tokenized_bills[INPUT_IDS]
 
     def create_double_majority_labels(self, results: List[DoubleMajorityBallotResult]) -> Tensor:
         """Converts results to labels in the form of tuples containing the
         popular and canton share vote result. Similar to create_bill_features,
         these labels are wrapped into another batch dimension to match
-        TFBertModel expectations.
+        TFBertForSequenceClassification expectations.
 
         Args:
             results (List[DoubleMajorityBallotResult]): Results to convert to expected labels.
 
         Returns:
-            Tensor: Label tensor suitable for use with TFBertModel.
+            Tensor: Label tensor suitable for use with
+            TFBertForSequenceClassification.
         """
         labels: List[Tuple[float, float]] = [(float(result.percentage_yes), float(
             result.accepting_cantons)) for result in results]
-        labels_with_batch_dimension: Tensor = Batch.split_into_batches(
-            labels, BATCH_SIZE)
-        return labels_with_batch_dimension
+        return tf.convert_to_tensor(labels)
 
-    def train(self, dataset: tf.data.Dataset, epochs: int) -> None:
+    def train(self, features: Tensor, labels: Tensor, epochs: int) -> None:
         """Trains self.model with dataset.
 
         Args:
             dataset (tf.data.Dataset): Training data to use.
         """
-        self.model.fit(dataset, epochs=epochs, batch_size=BATCH_SIZE)
+        self.model.fit(features, labels, epochs=epochs, batch_size=BATCH_SIZE)
 
     def save(self) -> None:
-        """Saves the current state of the moodel to get_persisted_model_file.
+        """Saves the current state of the model to get_persisted_model_file.
         """
         self.model.save(
             VoteResultPredictionModel.get_persisted_model_file(), save_format="keras")
