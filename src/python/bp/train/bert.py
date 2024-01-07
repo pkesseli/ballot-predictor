@@ -3,15 +3,16 @@ from bp.entity.bill import Bill
 
 import os
 import tensorflow as tf
+from decimal import Decimal
 from keras import Model
 from keras.models import load_model
-from keras.layers import Dense, Input, ReLU
-from keras.losses import MeanSquaredError
+from keras.layers import Dense, Input, Softmax
+from keras.losses import CategoricalCrossentropy
 from keras.optimizers import Adam
 from tensorflow import Tensor
 from transformers import BertTokenizer, TFBertForSequenceClassification
 from transformers.modeling_tf_outputs import TFBaseModelOutputWithPoolingAndCrossAttentions
-from typing import List, Tuple
+from typing import Callable, List, Literal, Tuple
 
 
 HUGGINGFACE_MODEL: str = "bert-base-multilingual-cased"
@@ -41,9 +42,8 @@ learned layers."""
 
 
 NUMBER_OF_LABELS: int = 2
-"""int: Number of output label values produced by our output layer. This
-matches the number of float values in a double majority ballot results, i.e.
-the popular vote and the share of cantons voting yes."""
+"""int: Number of output label values produced by our output layer. We use a
+one-hot encoding, where two floats represent a single percentage."""
 
 
 LABEL_MAX_VALUE: float = 100.0
@@ -63,18 +63,45 @@ class VoteResultPredictionModel:
     persisted model will be covered by tests in the future.
     """
 
-    def __init__(self) -> None:
+    @staticmethod
+    def create_popular_majority_model():
+        """Creates a model to predict the popular majority voting result for a
+        bill.
+
+        Returns:
+            VoteResultPredictionModel: Model predicting popular majority share.
+        """
+        return VoteResultPredictionModel("popular_majority", lambda result: result.percentage_yes)
+
+    @staticmethod
+    def create_canton_majority_model():
+        """Creates a model to predict the canton majority voting result for a
+        bill.
+
+        Returns:
+            VoteResultPredictionModel: Model predicting canton majority share.
+        """
+        return VoteResultPredictionModel("canton_majority", lambda result: result.accepting_cantons)
+
+    def __init__(self, model_name: Literal["popular_majority", "canton_majority"], label_factory: Callable[[DoubleMajorityBallotResult], Decimal]) -> None:
         """Loads the last persisted multilingual ballot vote result prediction
         model from get_persisted_model_file, if it exists. Otherwise a new,
         untrained model is created using __create_model.
+
+        Args:
+            model_name (str): Name of the model to create. Used for persisting.
+            label_factory (Callable[[DoubleMajorityBallotResult], Decimal]):
+            Indicates which part of the vote result is modelled, i.e. popular
+            or canton majority.
         """
         self.tokenizer = BertTokenizer.from_pretrained(HUGGINGFACE_MODEL)
-
-        persisted_model: str = VoteResultPredictionModel.get_persisted_model_file()
-        if os.path.isfile(persisted_model):
-            self.model = load_model(persisted_model)
+        self.persisted_model_directory = VoteResultPredictionModel.get_persisted_model_directory(
+            model_name)
+        if os.listdir(self.persisted_model_directory):
+            self.model = load_model(self.persisted_model_directory)
         else:
             self.model = self.__create_model()
+        self.label_factory = label_factory
 
     def __create_model(self) -> Model:
         """Creates a new, untrained model from a HuggingFace multilingual BERT
@@ -89,13 +116,12 @@ class VoteResultPredictionModel:
             shape=(53,), dtype=tf.int32)
         bert_layers: TFBaseModelOutputWithPoolingAndCrossAttentions = bert_base_model.bert(
             input_layer)
-        regression_layer = Dense(
-            NUMBER_OF_LABELS, activation=ReLU(LABEL_MAX_VALUE))
+        regression_layer = Dense(NUMBER_OF_LABELS, activation=Softmax())
         regression_layer_on_top_of_bert = regression_layer(
             bert_layers[POOLED_OUTPUT_LAYER_INDEX])
         model = Model(inputs=input_layer,
                       outputs=regression_layer_on_top_of_bert)
-        model.compile(optimizer=Adam(), loss=MeanSquaredError())
+        model.compile(optimizer=Adam(), loss=CategoricalCrossentropy())
         return model
 
     def create_bill_features(self, bills: List[Bill]) -> Tensor:
@@ -136,9 +162,11 @@ class VoteResultPredictionModel:
             Tensor: Label tensor suitable for use with
             TFBertForSequenceClassification.
         """
-        labels: List[Tuple[float, float]] = [(float(result.percentage_yes), float(
-            result.accepting_cantons)) for result in results]
-        return tf.convert_to_tensor(labels)
+        labels: List[float] = [
+            float(self.label_factory(result)) / 100.0 for result in results]
+        one_hot_labels: List[Tuple[float, float]] = [
+            (label, 1.0 - label) for label in labels]
+        return tf.convert_to_tensor(one_hot_labels)
 
     def train(self, features: Tensor, labels: Tensor, epochs: int) -> None:
         """Trains self.model with dataset.
@@ -151,11 +179,17 @@ class VoteResultPredictionModel:
     def save(self) -> None:
         """Saves the current state of the model to get_persisted_model_file.
         """
-        self.model.save(
-            VoteResultPredictionModel.get_persisted_model_file(), save_format="keras")
+        self.model.save(self.persisted_model_directory)
 
     @staticmethod
-    def get_persisted_model_file() -> None:
-        """Provides the absolute path to the file persisting this model."""
+    def get_persisted_model_directory(model_name: str) -> str:
+        """Provides the absolute path to the directory persisting model_name.
+
+        Args:
+            model_name (str): Name of the model to persist.
+
+        Returns:
+            str: Path to directory containing the model.
+        """
         module_location: str = os.path.dirname(__file__)
-        return os.path.join(module_location, "../resources/tensorflow/vote-result-prediction.keras")
+        return os.path.join(module_location, "../resources/tensorflow", model_name)
