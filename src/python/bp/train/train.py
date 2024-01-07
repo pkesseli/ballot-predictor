@@ -17,14 +17,16 @@ async def main():
     vote results. Excluded from unit test coverage check, since this script is
     only executed manually during experiments.
     """
-    model = VoteResultPredictionModel()
     ballots: List[DoubleMajorityBallot] = await Serialisation.load_augmented_initiatives()
-    features: Tensor = model.create_bill_features(
-        [ballot.bill for ballot in ballots])
-    labels: Tensor = model.create_double_majority_labels(
-        [ballot.result for ballot in ballots])
-    model.train(features, labels, 10)
-    model.save()
+    models: List[VoteResultPredictionModel] = [VoteResultPredictionModel.create_popular_majority_model(
+    ), VoteResultPredictionModel.create_canton_majority_model()]
+    for model in models:
+        features: Tensor = model.create_bill_features(
+            [ballot.bill for ballot in ballots])
+        labels: Tensor = model.create_double_majority_labels(
+            [ballot.result for ballot in ballots])
+        model.train(features, labels, epochs=2)
+        model.save()
 
 
 if __name__ == "__main__":
