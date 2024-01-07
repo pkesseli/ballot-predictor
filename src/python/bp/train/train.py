@@ -2,7 +2,7 @@ from bp.data.serialisation import Serialisation
 from bp.entity.ballot import DoubleMajorityBallot
 from bp.train.bert import VoteResultPredictionModel
 
-import tensorflow as tf
+
 from tensorflow import Tensor
 from typing import List
 import asyncio
@@ -23,9 +23,7 @@ async def main():
         [ballot.bill for ballot in ballots])
     labels: Tensor = model.create_double_majority_labels(
         [ballot.result for ballot in ballots])
-    training_dataset: tf.data.Dataset = tf.data.Dataset.from_tensor_slices(
-        (features, labels))
-    model.train(training_dataset, 10)
+    model.train(features, labels, 10)
     model.save()
 
 
