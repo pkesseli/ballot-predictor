@@ -4,5 +4,6 @@ omit =
     src/python/bp/augment/augmenter.py
     src/python/bp/augment/openai.py
     src/python/bp/data/collector.py
+    src/python/bp/export/export.py
     src/python/bp/train/bert.py
     src/python/bp/train/train.py

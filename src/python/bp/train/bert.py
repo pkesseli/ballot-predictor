@@ -94,6 +94,7 @@ class VoteResultPredictionModel:
             Indicates which part of the vote result is modelled, i.e. popular
             or canton majority.
         """
+        self.name = model_name
         self.tokenizer = BertTokenizer.from_pretrained(HUGGINGFACE_MODEL)
         self.persisted_model_directory = VoteResultPredictionModel.get_persisted_model_directory(
             model_name)
