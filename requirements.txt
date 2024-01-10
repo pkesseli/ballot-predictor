@@ -1,4 +1,4 @@
-absl-py==2.0.0
+absl-py==1.4.0
 aiofiles==23.2.1
 aiosqlite==0.19.0
 annotated-types==0.6.0
@@ -10,6 +10,7 @@ charset-normalizer==3.3.2
 colorama==0.4.6
 coverage==7.3.3
 distro==1.8.0
+dm-tree==0.1.8
 filelock==3.13.1
 flatbuffers==23.5.26
 fsspec==2023.12.2
@@ -61,6 +62,7 @@ tensorboard-data-server==0.7.2
 tensorflow==2.15.0
 tensorflow-estimator==2.15.0
 tensorflow-io-gcs-filesystem==0.31.0
+tensorflow-model-optimization==0.7.5
 termcolor==2.4.0
 thefuzz==0.20.0
 tokenizers==0.15.0
