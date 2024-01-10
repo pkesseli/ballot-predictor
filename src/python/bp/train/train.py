@@ -18,15 +18,13 @@ async def main():
     only executed manually during experiments.
     """
     ballots: List[DoubleMajorityBallot] = await Serialisation.load_augmented_initiatives()
-    models: List[VoteResultPredictionModel] = [VoteResultPredictionModel.create_popular_majority_model(
-    ), VoteResultPredictionModel.create_canton_majority_model()]
-    for model in models:
-        features: Tensor = model.create_bill_features(
-            [ballot.bill for ballot in ballots])
-        labels: Tensor = model.create_double_majority_labels(
-            [ballot.result for ballot in ballots])
-        model.train(features, labels, epochs=2)
-        model.save()
+    model = VoteResultPredictionModel()
+    features: Tensor = model.create_bill_features(
+        [ballot.bill for ballot in ballots])
+    labels: Tensor = model.create_double_majority_labels(
+        [ballot.result for ballot in ballots])
+    model.train(features, labels, epochs=2)
+    model.save()
 
 
 if __name__ == "__main__":
