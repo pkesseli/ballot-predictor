@@ -36,3 +36,15 @@ To run the python tests with coverage information, use:
 ```bash
 python -m coverage run --source src/python -m unittest discover -s src/python; python -m coverage report --fail-under 100 --show-missing
 ```
+
+## Next
+
+Start the web application in dev mode:
+```bash
+npm run --prefix src/js dev
+```
+
+Create static webapp for deployment:
+```bash
+npm run --prefix src/js build
+```

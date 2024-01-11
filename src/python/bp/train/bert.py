@@ -104,9 +104,8 @@ class VoteResultPredictionModel:
             TFBertForSequenceClassification.
         """
         formatted_bills: List[str] = [bill.title for bill in bills]
-        tokenized_bills: Tensor = self.tokenizer(
-            formatted_bills, padding=True, truncation=True, return_tensors=TENSOR_FLOW_FORMAT)
-        return tokenized_bills[INPUT_IDS]
+        tokenized_bills: Tensor = self.tokenizer(formatted_bills, padding=True)
+        return tf.convert_to_tensor(tokenized_bills[INPUT_IDS])
 
     def create_double_majority_labels(self, results: List[DoubleMajorityBallotResult]) -> Tensor:
         """Converts results to labels in the form of tuples containing the
