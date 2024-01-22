@@ -10,8 +10,10 @@
   },
   "dependencies": {
     "@xenova/transformers": "^2.14.0",
+    "fetch-api-progress": "^0.1.0",
     "next": "14.0.4",
     "react": "^18",
+    "react-bootstrap": "^2.9.2",
     "react-dom": "^18"
   },
   "devDependencies": {

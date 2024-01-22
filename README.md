@@ -41,10 +41,10 @@ python -m coverage run --source src/python -m unittest discover -s src/python; p
 
 Start the web application in dev mode:
 ```bash
-npm run --prefix src/js dev
+npm --prefix src/js run dev
 ```
 
 Create static webapp for deployment:
 ```bash
-npm run --prefix src/js build
+npm --prefix src/js run build
 ```
