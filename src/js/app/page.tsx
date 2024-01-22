@@ -9,19 +9,19 @@ import { ChangeEvent, useCallback, useEffect, useRef } from 'react';
  * @returns Next.js home page.
  */
 export default function Home(): JSX.Element {
-  const tokenizer = useRef<Worker | null>(null);
+  const model = useRef<Worker | null>(null);
   useEffect(() => {
-    if (!tokenizer.current)
-      tokenizer.current = new Worker(new URL('./tokenizer.ts', import.meta.url), {
+    if (!model.current)
+      model.current = new Worker(new URL('./model.ts', import.meta.url), {
         type: 'module'
       });
-    tokenizer.current.addEventListener('message', (e: MessageEvent<string>) => {
+    model.current.addEventListener('message', (e: MessageEvent<string>) => {
       console.log("e: " + e.data);
     });
   }, [])
 
   const tokenize = useCallback((text: string) => {
-    tokenizer.current?.postMessage(text);
+    model.current?.postMessage(text);
   }, []);
 
   return (
